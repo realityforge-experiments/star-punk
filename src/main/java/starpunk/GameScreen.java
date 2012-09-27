@@ -1,6 +1,8 @@
 package starpunk;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL10;
 
 public class GameScreen
   implements Screen
@@ -8,6 +10,7 @@ public class GameScreen
   @Override
   public void render( final float delta )
   {
+    Gdx.gl10.glClear( GL10.GL_COLOR_BUFFER_BIT );
   }
 
   @Override
