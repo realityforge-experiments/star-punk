@@ -2,7 +2,7 @@ package starpunk.components;
 
 import com.artemis.Component;
 
-public class Position
+public final class Position
   extends Component
 {
   private float _x;
