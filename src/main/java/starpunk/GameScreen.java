@@ -17,6 +17,11 @@ public class GameScreen
 
     _world = new World();
     _world.initialize();
+
+    for( int i = 0; 500 > i; i++ )
+    {
+      EntityFactory.createStar( _world, StarPunkGame.WIDTH, StarPunkGame.HEIGHT ).addToWorld();
+    }
   }
 
   @Override
