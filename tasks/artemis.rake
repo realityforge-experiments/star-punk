@@ -4,5 +4,5 @@ ARTEMIS = struct(
   :framework_sources => "com.artemis:artemis:jar:sources:#{ARTEMIS_VERSION}"
 )
 
-artifact(ARTEMIS.framework).from(download("http://gamadu.com/artemis/artemis-#{ARTEMIS_VERSION}.jar"))
-artifact(ARTEMIS.framework_sources).from(download("http://gamadu.com/artemis/artemis-#{ARTEMIS_VERSION}-src.jar"))
+download(artifact(ARTEMIS.framework) => "http://gamadu.com/artemis/artemis-#{ARTEMIS_VERSION}.jar")
+download(artifact(ARTEMIS.framework_sources) => "http://gamadu.com/artemis/artemis-#{ARTEMIS_VERSION}-src.jar")
