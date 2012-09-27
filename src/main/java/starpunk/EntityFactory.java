@@ -29,6 +29,7 @@ public final class EntityFactory
     final float scale = MathUtils.random( 0.5f, 1f );
     sprite.setScaleY( scale );
     sprite.setScaleX( scale );
+    sprite.setRotation( MathUtils.random( 0f, 360f ) );
     sprite.setR( MathUtils.random( 0.3f, 0.9f ) );
     sprite.setG( MathUtils.random( 0.3f, 0.9f ) );
     sprite.setB( MathUtils.random( 0.3f, 0.9f ) );
