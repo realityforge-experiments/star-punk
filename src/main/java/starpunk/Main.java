@@ -1,50 +1,25 @@
 package starpunk;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.tools.imagepacker.TexturePacker;
 
 public class Main
 {
   public static void main( final String[] args )
   {
+    final TexturePacker.Settings settings = new TexturePacker.Settings();
+    settings.maxWidth = 512;
+    settings.maxHeight = 512;
+    TexturePacker.process( settings, "src/main/resources", "target/assets", "game" );
+
     final LwjglApplicationConfiguration configuration = new LwjglApplicationConfiguration();
     configuration.fullscreen = false;
-    configuration.width = 1280;
-    configuration.height = 900;
+    configuration.width = StarPunkGame.WIDTH;
+    configuration.height = StarPunkGame.HEIGHT;
     configuration.useCPUSynch = false;
     configuration.vSyncEnabled = false;
     configuration.title = "Star Punk";
-    new LwjglApplication( new ApplicationListener() {
-      @Override
-      public void create()
-      {
-      }
-
-      @Override
-      public void resize( final int width, final int height )
-      {
-      }
-
-      @Override
-      public void render()
-      {
-      }
-
-      @Override
-      public void pause()
-      {
-      }
-
-      @Override
-      public void resume()
-      {
-      }
-
-      @Override
-      public void dispose()
-      {
-      }
-    }, configuration );
+    new LwjglApplication( new StarPunkGame(), configuration );
   }
 }
