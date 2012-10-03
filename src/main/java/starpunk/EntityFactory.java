@@ -5,6 +5,7 @@ import com.artemis.World;
 import com.badlogic.gdx.math.MathUtils;
 import starpunk.components.Position;
 import starpunk.components.Sprite;
+import starpunk.components.Velocity;
 
 public final class EntityFactory
 {
@@ -23,6 +24,11 @@ public final class EntityFactory
     position.setX( MathUtils.random( -width / 2, width / 2 ) );
     position.setY( MathUtils.random( -height / 2, height / 2 ) );
     e.addComponent( position );
+
+    final Velocity velocity = new Velocity();
+    velocity.setVectorX( 0.05f * MathUtils.random( -width / 2, width / 2 ) );
+    velocity.setVectorY( 0.05f * MathUtils.random( -height / 2, height / 2 ) );
+    e.addComponent( velocity );
 
     final Sprite sprite = new Sprite();
     sprite.setName( "star" );

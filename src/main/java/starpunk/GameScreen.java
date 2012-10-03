@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import starpunk.systems.MovementSystem;
 import starpunk.systems.SpriteRenderSystem;
 
 public class GameScreen
@@ -20,6 +21,7 @@ public class GameScreen
 
     _world = new World();
     _renderSystem = _world.setSystem( new SpriteRenderSystem( _camera ), true );
+    _world.setSystem( new MovementSystem() );
     _world.initialize();
 
     for( int i = 0; 500 > i; i++ )
