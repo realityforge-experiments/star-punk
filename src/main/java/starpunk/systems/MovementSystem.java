@@ -18,7 +18,7 @@ public class MovementSystem
 
   public MovementSystem()
   {
-    super( Aspect.getAspectFor( Position.class, Velocity.class ) );
+    super( Aspect.getAspectForAll( Position.class, Velocity.class ) );
   }
 
   @Override

@@ -50,13 +50,11 @@ public class Aspect {
 	
 	/**
 	 * Returns an aspect where an entity must possess all of the specified component types.
-	 * @param type a required component type
+   *
 	 * @param types a required component type
 	 * @return an aspect that can be matched against entities
 	 */
-	public Aspect all(Class<? extends Component> type, Class<? extends Component>... types) {
-		allSet.set(ComponentType.getIndexFor(type));
-		
+	public Aspect all(final Class<? extends Component>... types) {
 		for (Class<? extends Component> t : types) {
 			allSet.set(ComponentType.getIndexFor(t));
 		}
@@ -68,13 +66,10 @@ public class Aspect {
 	 * Excludes all of the specified component types from the aspect. A system will not be
 	 * interested in an entity that possesses one of the specified exclusion component types.
 	 * 
-	 * @param type component type to exclude
 	 * @param types component type to exclude
 	 * @return an aspect that can be matched against entities
 	 */
-	public Aspect exclude(Class<? extends Component> type, Class<? extends Component>... types) {
-		exclusionSet.set(ComponentType.getIndexFor(type));
-		
+	public Aspect exclude(Class<? extends Component>... types) {
 		for (Class<? extends Component> t : types) {
 			exclusionSet.set(ComponentType.getIndexFor(t));
 		}
@@ -83,13 +78,10 @@ public class Aspect {
 	
 	/**
 	 * Returns an aspect where an entity must possess one of the specified component types.
-	 * @param type one of the types the entity must possess
 	 * @param types one of the types the entity must possess
 	 * @return an aspect that can be matched against entities
 	 */
-	public Aspect one(Class<? extends Component> type, Class<? extends Component>... types) {
-		oneSet.set(ComponentType.getIndexFor(type));
-		
+	public Aspect one(Class<? extends Component>... types) {
 		for (Class<? extends Component> t : types) {
 			oneSet.set(ComponentType.getIndexFor(t));
 		}
@@ -99,26 +91,24 @@ public class Aspect {
 	/**
 	 * Creates an aspect where an entity must possess all of the specified component types.
 	 * 
-	 * @param type a required component type
-	 * @param types a required component type
+	 * @param types the required component types.
 	 * @return an aspect that can be matched against entities
 	 */
-	public static Aspect getAspectForAll(Class<? extends Component> type, Class<? extends Component>... types) {
+	public static Aspect getAspectForAll(Class<? extends Component>... types) {
 		Aspect aspect = new Aspect();
-		aspect.all(type, types);
+		aspect.all(types);
 		return aspect;
 	}
 	
 	/**
 	 * Creates an aspect where an entity must possess one of the specified component types.
 	 * 
-	 * @param type one of the types the entity must possess
 	 * @param types one of the types the entity must possess
 	 * @return an aspect that can be matched against entities
 	 */
-	public static Aspect getAspectForOne(Class<? extends Component> type, Class<? extends Component>... types) {
+	public static Aspect getAspectForOne(Class<? extends Component>... types) {
 		Aspect aspect = new Aspect();
-		aspect.one(type, types);
+		aspect.one(types);
 		return aspect;
 	}
 	
