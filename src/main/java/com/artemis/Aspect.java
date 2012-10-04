@@ -99,20 +99,6 @@ public class Aspect {
 	/**
 	 * Creates an aspect where an entity must possess all of the specified component types.
 	 * 
-	 * @param type the type the entity must possess
-	 * @param types the type the entity must possess
-	 * @return an aspect that can be matched against entities
-	 * 
-	 * @deprecated
-	 * @see getAspectForAll
-	 */
-	public static Aspect getAspectFor(Class<? extends Component> type, Class<? extends Component>... types) {
-		return getAspectForAll(type, types);
-	}
-	
-	/**
-	 * Creates an aspect where an entity must possess all of the specified component types.
-	 * 
 	 * @param type a required component type
 	 * @param types a required component type
 	 * @return an aspect that can be matched against entities
