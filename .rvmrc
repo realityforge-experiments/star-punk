@@ -5,7 +5,7 @@ cat <<EOF
 *******************************************************
 EOF
 
-ruby_string="1.9.3"
+ruby_string="ruby-1.9.3-p0"
 project_dir=`pwd`
 export project_name=${JOB_NAME-`basename "$project_dir"`}
 
@@ -24,5 +24,4 @@ if [ -f Gemfile ]; then
     gem install bundler
   fi
   bundle install --binstubs
-  gem cleanup -q
 fi
