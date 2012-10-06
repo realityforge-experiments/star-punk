@@ -7,16 +7,14 @@ import com.artemis.EntitySystem;
 import com.artemis.annotations.Mapper;
 import com.artemis.utils.Bag;
 import com.artemis.utils.ImmutableBag;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
+import starpunk.StarPunkGame;
 import starpunk.components.Position;
 import starpunk.components.Sprite;
 
@@ -28,7 +26,6 @@ public final class SpriteRenderSystem
   @Mapper
   ComponentMapper<Sprite> _spriteMapper;
 
-  private HashMap<String, AtlasRegion> _regions;
   private SpriteBatch _batch;
   private OrthographicCamera _camera;
 
@@ -44,12 +41,6 @@ public final class SpriteRenderSystem
   @Override
   protected void initialize()
   {
-    _regions = new HashMap<String, AtlasRegion>();
-    final TextureAtlas textureAtlas = new TextureAtlas( Gdx.files.internal( "target/assets/game" ) );
-    for( final AtlasRegion r : textureAtlas.getRegions() )
-    {
-      _regions.put( r.name, r );
-    }
     _regionsByEntity = new Bag<AtlasRegion>();
 
     _batch = new SpriteBatch();
@@ -117,7 +108,7 @@ public final class SpriteRenderSystem
   protected void inserted( final Entity e )
   {
     final Sprite sprite = _spriteMapper.get( e );
-    _regionsByEntity.set( e.getId(), _regions.get( sprite.getName() ) );
+    _regionsByEntity.set( e.getId(), StarPunkGame.getGame().getAssetManager().getSprite( sprite.getName() ) );
 
     _sortedEntities.add( e );
 
