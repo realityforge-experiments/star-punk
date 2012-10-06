@@ -6,8 +6,8 @@ import starpunk.screens.GameLoopScreen;
 public final class StarPunkGame
   extends Game
 {
-  public static final int WIDTH = 1280;
-  public static final int HEIGHT = 900;
+  public static final int WIDTH = 512;
+  public static final int HEIGHT = 512;
 
   StarPunkGame()
   {
