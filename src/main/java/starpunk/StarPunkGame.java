@@ -1,7 +1,7 @@
 package starpunk;
 
 import com.badlogic.gdx.Game;
-import starpunk.screens.GameScreen;
+import starpunk.screens.GameLoopScreen;
 
 public final class StarPunkGame
   extends Game
@@ -16,6 +16,6 @@ public final class StarPunkGame
   @Override
   public void create()
   {
-    setScreen( new GameScreen() );
+    setScreen( new GameLoopScreen() );
   }
 }
