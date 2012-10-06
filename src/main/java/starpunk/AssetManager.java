@@ -17,6 +17,11 @@ public final class AssetManager
     }
   }
 
+  protected void dispose()
+  {
+    _sprites.clear();
+  }
+
   public TextureAtlas.AtlasRegion getSprite( final String name )
   {
     return _sprites.get( name );

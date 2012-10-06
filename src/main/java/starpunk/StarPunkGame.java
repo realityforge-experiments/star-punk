@@ -29,6 +29,13 @@ public final class StarPunkGame
     setScreen( new GameLoopScreen( this ) );
   }
 
+  @Override
+  public void dispose()
+  {
+    super.dispose();
+    _assetManager.dispose();
+  }
+
   public AssetManager getAssetManager()
   {
     return _assetManager;
