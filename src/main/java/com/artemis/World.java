@@ -55,7 +55,6 @@ public class World {
 		em = new EntityManager();
 		setManager(em);
 	}
-
 	
 	/**
 	 * Makes sure all managers systems are initialized in the order they were added.
@@ -70,8 +69,7 @@ public class World {
 			systemsBag.get(i).initialize();
 		}
 	}
-	
-	
+
 	/**
 	 * Returns a manager that takes care of all the entities in the world.
 	 * entities of this world.
@@ -90,9 +88,6 @@ public class World {
 	public ComponentManager getComponentManager() {
 		return cm;
 	}
-	
-	
-	
 
 	/**
 	 * Add a manager into this world. It can be retrieved later.
@@ -126,9 +121,6 @@ public class World {
 		managersBag.remove(manager);
 	}
 
-	
-	
-	
 	/**
 	 * Time since last game loop.
 	 * 
@@ -147,8 +139,6 @@ public class World {
 		this.delta = delta;
 	}
 	
-
-
 	/**
 	 * Adds a entity to this world.
 	 *
@@ -196,7 +186,6 @@ public class World {
 		disable.add(e);
 	}
 
-
 	/**
 	 * Create and return a new or reused entity instance.
 	 * Will NOT add the entity to the world, use World.addEntity(Entity) for that.
@@ -211,9 +200,6 @@ public class World {
 	public Entity getEntity(int entityId) {
 		return em.getEntity(entityId);
 	}
-
-	
-
 
 	/**
 	 * Gives you all the systems in this world for possible iteration.
@@ -282,7 +268,6 @@ public class World {
 		return type.cast(systems.get(type));
 	}
 
-	
 	/**
 	 * Performs an action on each entity.
 	 */
@@ -297,7 +282,6 @@ public class World {
 		}
 	}
 
-	
 	/**
 	 * Process all non-passive systems.
 	 */
@@ -346,7 +330,6 @@ public class World {
 			}
 		}
 	}
-	
 
 	/**
 	 * Retrieves a ComponentMapper instance for fast retrieval of components from entities.
@@ -357,7 +340,6 @@ public class World {
 	public <T extends Component> ComponentMapper<T> getMapper(Class<T> type) {
 		return ComponentMapper.getFor(type, this);
 	}
-	
 
 	/*
 	 * Only used internally to maintain clean code.
@@ -366,10 +348,7 @@ public class World {
 		void perform(EntityObserver observer, Entity e);
 	}
 
-	
-	
 	private static class ComponentMapperInitHelper {
-
 		@SuppressWarnings( "unchecked" )
     public static void config(Object target, World world) {
 			try {
@@ -388,7 +367,5 @@ public class World {
 				throw new RuntimeException("Error while setting component mappers", e);
 			}
 		}
-
 	}
-
 }
