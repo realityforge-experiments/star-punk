@@ -1,8 +1,9 @@
 package starpunk;
 
 import com.badlogic.gdx.Game;
+import starpunk.screens.GameScreen;
 
-final class StarPunkGame
+public final class StarPunkGame
   extends Game
 {
   public static final int WIDTH = 1280;
