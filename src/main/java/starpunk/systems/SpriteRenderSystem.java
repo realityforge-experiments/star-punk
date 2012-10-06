@@ -46,7 +46,7 @@ public final class SpriteRenderSystem
   {
     _regions = new HashMap<String, AtlasRegion>();
     final TextureAtlas textureAtlas = new TextureAtlas( Gdx.files.internal( "target/assets/game" ) );
-    for( AtlasRegion r : textureAtlas.getRegions() )
+    for( final AtlasRegion r : textureAtlas.getRegions() )
     {
       _regions.put( r.name, r );
     }
