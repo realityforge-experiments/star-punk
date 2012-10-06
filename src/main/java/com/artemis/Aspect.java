@@ -24,6 +24,7 @@ import java.util.BitSet;
  * @author Arni Arent
  *
  */
+@SuppressWarnings( "unchecked" )
 public class Aspect {
 	
 	private BitSet allSet;

@@ -379,7 +379,8 @@ public class World {
 	
 	private static class ComponentMapperInitHelper {
 
-		public static void config(Object target, World world) {
+		@SuppressWarnings( "unchecked" )
+    public static void config(Object target, World world) {
 			try {
 				Class<?> clazz = target.getClass();
 				for (Field field : clazz.getDeclaredFields()) {
