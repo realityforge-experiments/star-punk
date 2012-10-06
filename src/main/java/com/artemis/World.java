@@ -110,9 +110,7 @@ public class World {
 	/**
 	 * Returns a manager of the specified type.
 	 * 
-	 * @param <T>
-	 * @param managerType
-	 *            class type of the manager
+	 * @param managerType class type of the manager
 	 * @return the manager
 	 */
 	public <T extends Manager> T getManager(Class<T> managerType) {
@@ -153,7 +151,7 @@ public class World {
 
 	/**
 	 * Adds a entity to this world.
-	 * 
+	 *
 	 * @param e entity
 	 */
 	public void addEntity(Entity e) {
@@ -164,7 +162,7 @@ public class World {
 	 * Ensure all systems are notified of changes to this entity.
 	 * If you're adding a component to an entity after it's been
 	 * added to the world, then you need to invoke this method.
-	 * 
+	 *
 	 * @param e entity
 	 */
 	public void changedEntity(Entity e) {
@@ -173,7 +171,7 @@ public class World {
 	
 	/**
 	 * Delete the entity from the world.
-	 * 
+	 *
 	 * @param e entity
 	 */
 	public void deleteEntity(Entity e) {
@@ -202,8 +200,6 @@ public class World {
 	/**
 	 * Create and return a new or reused entity instance.
 	 * Will NOT add the entity to the world, use World.addEntity(Entity) for that.
-	 * 
-	 * @return entity
 	 */
 	public Entity createEntity() {
 		return em.createEntityInstance();
@@ -211,9 +207,6 @@ public class World {
 
 	/**
 	 * Get a entity having the specified id.
-	 * 
-	 * @param entityId
-	 * @return entity
 	 */
 	public Entity getEntity(int entityId) {
 		return em.getEntity(entityId);
@@ -292,8 +285,6 @@ public class World {
 	
 	/**
 	 * Performs an action on each entity.
-	 * @param entities
-	 * @param performer
 	 */
 	private void check(Bag<Entity> entities, Performer performer) {
 		if (!entities.isEmpty()) {
