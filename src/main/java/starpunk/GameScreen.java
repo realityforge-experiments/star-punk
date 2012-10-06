@@ -2,14 +2,14 @@ package starpunk;
 
 import com.artemis.World;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import starpunk.screens.BaseScreen;
 import starpunk.systems.MovementSystem;
 import starpunk.systems.SpriteRenderSystem;
 
-public class GameScreen
-  implements Screen
+public final class GameScreen
+  extends BaseScreen
 {
   private World _world;
   private OrthographicCamera _camera;
@@ -31,45 +31,18 @@ public class GameScreen
   }
 
   @Override
-  public void render( final float delta )
+  public void update( final float delta )
   {
-    Gdx.gl10.glClear( GL10.GL_COLOR_BUFFER_BIT );
-
     _camera.update();
 
     _world.setDelta( delta );
     _world.process();
+  }
 
+  @Override
+  public void draw( final float delta )
+  {
+    Gdx.gl10.glClear( GL10.GL_COLOR_BUFFER_BIT );
     _renderSystem.process();
-  }
-
-  @Override
-  public void resize( int width, int height )
-  {
-  }
-
-  @Override
-  public void show()
-  {
-  }
-
-  @Override
-  public void hide()
-  {
-  }
-
-  @Override
-  public void pause()
-  {
-  }
-
-  @Override
-  public void resume()
-  {
-  }
-
-  @Override
-  public void dispose()
-  {
   }
 }
