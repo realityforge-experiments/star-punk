@@ -54,9 +54,8 @@ public class Aspect {
 	 * @param types a required component type
 	 * @return an aspect that can be matched against entities
 	 */
-  @SafeVarargs
-	public final Aspect all(final Class<? extends Component>... types) {
-		for (Class<? extends Component> t : types) {
+	public final Aspect all(final Class... types) {
+		for (Class t : types) {
 			allSet.set(ComponentType.getIndexFor(t));
 		}
 
@@ -70,9 +69,8 @@ public class Aspect {
 	 * @param types component type to exclude
 	 * @return an aspect that can be matched against entities
 	 */
-	@SafeVarargs
-	public final Aspect exclude(Class<? extends Component>... types) {
-		for (Class<? extends Component> t : types) {
+	public final Aspect exclude(Class... types) {
+		for (Class t : types) {
 			exclusionSet.set(ComponentType.getIndexFor(t));
 		}
 		return this;
@@ -83,9 +81,8 @@ public class Aspect {
 	 * @param types one of the types the entity must possess
 	 * @return an aspect that can be matched against entities
 	 */
-	@SafeVarargs
-	public final Aspect one(Class<? extends Component>... types) {
-		for (Class<? extends Component> t : types) {
+	public final Aspect one(Class... types) {
+		for (Class t : types) {
 			oneSet.set(ComponentType.getIndexFor(t));
 		}
 		return this;
@@ -97,8 +94,7 @@ public class Aspect {
 	 * @param types the required component types.
 	 * @return an aspect that can be matched against entities
 	 */
-	@SafeVarargs
-	public static Aspect getAspectForAll(Class<? extends Component>... types) {
+	public static Aspect getAspectForAll(Class... types) {
 		Aspect aspect = new Aspect();
 		aspect.all(types);
 		return aspect;
@@ -110,8 +106,7 @@ public class Aspect {
 	 * @param types one of the types the entity must possess
 	 * @return an aspect that can be matched against entities
 	 */
-	@SafeVarargs
-	public static Aspect getAspectForOne(Class<? extends Component>... types) {
+	public static Aspect getAspectForOne(Class... types) {
 		Aspect aspect = new Aspect();
 		aspect.one(types);
 		return aspect;
