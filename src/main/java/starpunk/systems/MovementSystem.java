@@ -30,5 +30,4 @@ public class MovementSystem
     position.setX( position.getX() + velocity.getVectorX() * world.delta );
     position.setY( position.getY() + velocity.getVectorY() * world.delta );
   }
-
 }
