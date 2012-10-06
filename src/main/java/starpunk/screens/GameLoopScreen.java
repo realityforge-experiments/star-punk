@@ -16,8 +16,9 @@ public final class GameLoopScreen
   private OrthographicCamera _camera;
   private SpriteRenderSystem _renderSystem;
 
-  public GameLoopScreen()
+  public GameLoopScreen( final StarPunkGame game )
   {
+    super( game );
     _camera = new OrthographicCamera( StarPunkGame.WIDTH, StarPunkGame.HEIGHT );
 
     _world = new World();

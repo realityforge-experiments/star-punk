@@ -1,10 +1,23 @@
 package starpunk.screens;
 
 import com.badlogic.gdx.Screen;
+import starpunk.StarPunkGame;
 
 public abstract class BaseScreen
   implements Screen
 {
+  private final StarPunkGame _game;
+
+  protected BaseScreen( final StarPunkGame game )
+  {
+    _game = game;
+  }
+
+  protected final StarPunkGame getGame()
+  {
+    return _game;
+  }
+
   public abstract void update( float delta );
 
   public abstract void draw( float delta );

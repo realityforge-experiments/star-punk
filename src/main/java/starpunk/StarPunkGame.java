@@ -16,6 +16,6 @@ public final class StarPunkGame
   @Override
   public void create()
   {
-    setScreen( new GameLoopScreen() );
+    setScreen( new GameLoopScreen( this ) );
   }
 }
