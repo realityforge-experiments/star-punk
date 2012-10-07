@@ -1,6 +1,7 @@
 package starpunk;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.stbtt.TrueTypeFontFactory;
@@ -15,6 +16,7 @@ public final class AssetManager
   private final HashMap<String, TextureAtlas.AtlasRegion> _sprites = new HashMap<String, TextureAtlas.AtlasRegion>();
   private final HashMap<String, TextureAtlas> _textures = new HashMap<String, TextureAtlas>();
   private BitmapFont _font;
+  private Texture _background;
 
   protected void initialize()
   {
@@ -33,6 +35,8 @@ public final class AssetManager
                                                   1.0f,
                                                   StarPunkGame.WIDTH,
                                                   StarPunkGame.HEIGHT );
+    _background = new Texture( Gdx.files.internal( "src/main/resources/planet.jpg" ) );
+    _background.setFilter( Texture.TextureFilter.Linear, Texture.TextureFilter.Linear );
   }
 
   protected void dispose()
@@ -44,6 +48,12 @@ public final class AssetManager
     _textures.clear();
     _sprites.clear();
     _font.dispose();
+    _background.dispose();
+  }
+
+  public Texture getBackground()
+  {
+    return _background;
   }
 
   public BitmapFont getFont()
