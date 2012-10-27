@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import starpunk.StarPunkGame;
 import starpunk.services.MusicResource;
+import starpunk.services.SoundResource;
 
 public final class EndGameScreen
   extends BaseScreen
@@ -81,6 +82,7 @@ public final class EndGameScreen
   {
     if( Gdx.input.isTouched() )
     {
+      getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
       getGame().setScreen( new GameLoopScreen( getGame() ) );
     }
   }

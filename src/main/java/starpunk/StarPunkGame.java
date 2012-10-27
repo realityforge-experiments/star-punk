@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import starpunk.screens.GameLoopScreen;
 import starpunk.services.AssetManager;
 import starpunk.services.BackgroundMusicManager;
+import starpunk.services.SoundManager;
 
 public final class StarPunkGame
   extends Game
@@ -15,6 +16,7 @@ public final class StarPunkGame
 
   private final AssetManager _assetManager = new AssetManager();
   private final BackgroundMusicManager _musicManager = new BackgroundMusicManager();
+  private final SoundManager _soundManager = new SoundManager();
   private static StarPunkGame c_game;
 
   public static StarPunkGame getGame()
@@ -52,6 +54,11 @@ public final class StarPunkGame
   public AssetManager getAssetManager()
   {
     return _assetManager;
+  }
+
+  public SoundManager getSoundManager()
+  {
+    return _soundManager;
   }
 
   @Override
