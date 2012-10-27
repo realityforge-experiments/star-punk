@@ -69,7 +69,7 @@ public final class EndGameScreen
                       false );
     spriteBatch.enableBlending();
     final String text = "It is the end my friend.\nTouch to continue!";
-        final BitmapFont font = StarPunkGame.getGame().getAssetManager().getFont();
+    final BitmapFont font = StarPunkGame.getGame().getAssetManager().getFont();
     final TextBounds bounds = font.getMultiLineBounds( text );
     spriteBatch.setBlendFunction( GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA );
     font.drawMultiLine( spriteBatch, text, 0, 160 + bounds.height / 2, 480, HAlignment.CENTER );
