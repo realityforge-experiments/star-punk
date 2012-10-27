@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import starpunk.StarPunkGame;
+import starpunk.services.MusicResource;
 
 public final class EndGameScreen
   extends BaseScreen
@@ -24,8 +25,23 @@ public final class EndGameScreen
   }
 
   @Override
+  public void show()
+  {
+    super.show();
+    getGame().getMusicManager().play( new MusicResource( "src/main/assets/music/menu.ogg" ) );
+  }
+
+  @Override
+  public void hide()
+  {
+    super.hide();
+    getGame().getMusicManager().play( null );
+  }
+
+  @Override
   public void dispose()
   {
+    super.dispose();
     spriteBatch.dispose();
   }
 

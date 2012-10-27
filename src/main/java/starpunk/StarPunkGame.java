@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import starpunk.screens.GameLoopScreen;
 import starpunk.services.AssetManager;
+import starpunk.services.BackgroundMusicManager;
 
 public final class StarPunkGame
   extends Game
@@ -13,6 +14,7 @@ public final class StarPunkGame
   public static final int HEIGHT = 512;
 
   private final AssetManager _assetManager = new AssetManager();
+  private final BackgroundMusicManager _musicManager = new BackgroundMusicManager();
   private static StarPunkGame c_game;
 
   public static StarPunkGame getGame()
@@ -38,7 +40,13 @@ public final class StarPunkGame
   {
     log( "Disposing game." );
     super.dispose();
+    _musicManager.dispose();
     _assetManager.dispose();
+  }
+
+  public BackgroundMusicManager getMusicManager()
+  {
+    return _musicManager;
   }
 
   public AssetManager getAssetManager()

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import starpunk.EntityFactory;
 import starpunk.StarPunkGame;
+import starpunk.services.MusicResource;
 import starpunk.systems.MovementSystem;
 import starpunk.systems.SpriteRenderSystem;
 
@@ -31,6 +32,20 @@ public final class GameLoopScreen
     {
       EntityFactory.createStar( _world, StarPunkGame.WIDTH, StarPunkGame.HEIGHT ).addToWorld();
     }
+  }
+
+  @Override
+  public void show()
+  {
+    super.show();
+    getGame().getMusicManager().play( new MusicResource( "src/main/assets/music/level.ogg" ) );
+  }
+
+  @Override
+  public void hide()
+  {
+    super.hide();
+    getGame().getMusicManager().play( null );
   }
 
   @Override
