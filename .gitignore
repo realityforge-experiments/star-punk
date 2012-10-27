@@ -2,7 +2,7 @@
 /*.ipr
 /*.iws
 /target
-/libs
+/downloads
 /reports
 /docs
 /_buildr.rb
