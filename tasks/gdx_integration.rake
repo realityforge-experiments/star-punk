@@ -1,5 +1,5 @@
-GDX_VERSION='0.9.6'
-#GDX_VERSION='nightly-20121021'
+#GDX_VERSION='0.9.6'
+GDX_VERSION='nightly-20121021'
 GdxLibrary = Struct.new("GdxLibrary", :key, :spec, :file)
 
 libraries = [
