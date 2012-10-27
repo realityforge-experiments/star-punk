@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import starpunk.EntityFactory;
 import starpunk.StarPunkGame;
 import starpunk.services.MusicResource;
+import starpunk.services.SoundResource;
 import starpunk.systems.MovementSystem;
 import starpunk.systems.SpriteRenderSystem;
 
@@ -16,7 +17,6 @@ public final class GameLoopScreen
   private World _world;
   private OrthographicCamera _camera;
   private SpriteRenderSystem _renderSystem;
-  private int _frameCount;
 
   public GameLoopScreen( final StarPunkGame game )
   {
@@ -68,9 +68,9 @@ public final class GameLoopScreen
   public void render( final float delta )
   {
     super.render( delta );
-    _frameCount++;
-    if( _frameCount > 100 )
+    if( Gdx.input.isTouched() )
     {
+      getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
       getGame().setScreen( new EndGameScreen( getGame() ) );
     }
   }
