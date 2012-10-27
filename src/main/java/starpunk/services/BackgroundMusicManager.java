@@ -101,6 +101,6 @@ public final class BackgroundMusicManager
 
   private void log( final String message )
   {
-    Gdx.app.log( BackgroundMusicManager.class.getSimpleName(), message );
+    Gdx.app.log( getClass().getSimpleName(), message );
   }
 }

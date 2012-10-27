@@ -84,6 +84,6 @@ public final class StarPunkGame
 
   private void log( final String message )
   {
-    Gdx.app.log( StarPunkGame.class.getSimpleName(), message );
+    Gdx.app.log( getClass().getSimpleName(), message );
   }
 }
