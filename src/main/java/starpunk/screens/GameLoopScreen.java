@@ -2,7 +2,7 @@ package starpunk.screens;
 
 import com.artemis.World;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import starpunk.EntityFactory;
 import starpunk.StarPunkGame;
@@ -45,7 +45,7 @@ public final class GameLoopScreen
   @Override
   public void draw( final float delta )
   {
-    Gdx.gl10.glClear( GL10.GL_COLOR_BUFFER_BIT );
+    Gdx.gl20.glClear( GL20.GL_COLOR_BUFFER_BIT );
     _renderSystem.process();
   }
 
