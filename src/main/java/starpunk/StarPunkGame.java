@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import starpunk.screens.GameLoopScreen;
+import starpunk.services.AssetManager;
 
 public final class StarPunkGame
   extends Game
