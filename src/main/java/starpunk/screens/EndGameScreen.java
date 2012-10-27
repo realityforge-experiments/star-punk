@@ -3,9 +3,6 @@ package starpunk.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
-import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import starpunk.StarPunkGame;
@@ -68,12 +65,6 @@ public final class EndGameScreen
                       512,
                       false,
                       false );
-    spriteBatch.enableBlending();
-    final String text = "It is the end my friend.\nTouch to continue!";
-    final BitmapFont font = StarPunkGame.getGame().getAssetManager().getFont();
-    final TextBounds bounds = font.getMultiLineBounds( text );
-    spriteBatch.setBlendFunction( GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA );
-    font.drawMultiLine( spriteBatch, text, 0, 160 + bounds.height / 2, 480, HAlignment.CENTER );
     spriteBatch.end();
   }
 

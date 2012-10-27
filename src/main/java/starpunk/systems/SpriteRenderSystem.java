@@ -8,7 +8,6 @@ import com.artemis.annotations.Mapper;
 import com.artemis.utils.Bag;
 import com.artemis.utils.ImmutableBag;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import java.util.ArrayList;
@@ -98,9 +97,6 @@ public final class SpriteRenderSystem
                     sprite.getRotation() );
       }
     }
-    final BitmapFont font = StarPunkGame.getGame().getAssetManager().getFont();
-    font.setColor( 1f, 0.5f, 0f, 1f );
-    font.draw( _batch, "This is some text", 10, 10 );
   }
 
   protected void end()
