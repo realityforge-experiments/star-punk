@@ -1,5 +1,6 @@
 package starpunk.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import starpunk.StarPunkGame;
 
@@ -32,30 +33,41 @@ public abstract class BaseScreen
   @Override
   public void resize( final int width, final int height )
   {
+    log( "Resizing screen to: " + width + " x " + height );
   }
 
   @Override
   public void show()
   {
+    log( "Showing screen" );
   }
 
   @Override
   public void hide()
   {
+    log( "Hiding screen" );
   }
 
   @Override
   public void pause()
   {
+    log( "Pausing screen" );
   }
 
   @Override
   public void resume()
   {
+    log( "Resuming screen" );
   }
 
   @Override
   public void dispose()
   {
+    log( "Disposing screen" );
+  }
+
+  private void log( final String message )
+  {
+    Gdx.app.log( getClass().getSimpleName(), message );
   }
 }
