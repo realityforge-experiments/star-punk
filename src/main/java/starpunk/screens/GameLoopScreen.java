@@ -15,6 +15,7 @@ public final class GameLoopScreen
   private World _world;
   private OrthographicCamera _camera;
   private SpriteRenderSystem _renderSystem;
+  private int _frameCount;
 
   public GameLoopScreen( final StarPunkGame game )
   {
@@ -46,5 +47,16 @@ public final class GameLoopScreen
   {
     Gdx.gl10.glClear( GL10.GL_COLOR_BUFFER_BIT );
     _renderSystem.process();
+  }
+
+  @Override
+  public void render( final float delta )
+  {
+    super.render( delta );
+    _frameCount++;
+    if( _frameCount > 100 )
+    {
+      getGame().setScreen( new EndGameScreen( getGame() ) );
+    }
   }
 }
