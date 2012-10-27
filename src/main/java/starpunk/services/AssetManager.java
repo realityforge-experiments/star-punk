@@ -24,7 +24,7 @@ public final class AssetManager
     }
     _textures.put( textureName, textureAtlas );
 
-    _background = new Texture( Gdx.files.internal( "src/main/resources/planet.jpg" ) );
+    _background = new Texture( Gdx.files.internal( "src/main/assets/backgrounds/planet.jpg" ) );
     _background.setFilter( Texture.TextureFilter.Linear, Texture.TextureFilter.Linear );
   }
 
