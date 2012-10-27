@@ -18,7 +18,7 @@ public final class BackgroundMusicManager
   private float _volume = 1f;
   private boolean _disabled;
 
-  public void play( final MusicResource resource )
+  public void play( @Nullable final MusicResource resource )
   {
     if( _resource == resource )
     {
