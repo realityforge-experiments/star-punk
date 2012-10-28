@@ -46,6 +46,11 @@ public final class StarPunkGame
     _assetManager.dispose();
   }
 
+  public boolean isDebugMode()
+  {
+    return false;
+  }
+
   public MusicManager getMusicManager()
   {
     return _musicManager;
