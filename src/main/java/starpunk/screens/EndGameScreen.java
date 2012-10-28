@@ -1,25 +1,24 @@
 package starpunk.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import starpunk.StarPunkGame;
 import starpunk.services.MusicResource;
 import starpunk.services.SoundResource;
 
 public final class EndGameScreen
-  extends BaseScreen
+  extends Base2DScreen
 {
-  private final SpriteBatch spriteBatch;
-  private final Matrix4 viewMatrix = new Matrix4();
-  private final Matrix4 transformMatrix = new Matrix4();
-
   public EndGameScreen( final StarPunkGame game )
   {
     super( game );
-    spriteBatch = new SpriteBatch();
   }
 
   @Override
@@ -27,6 +26,33 @@ public final class EndGameScreen
   {
     super.show();
     getGame().getMusicManager().play( new MusicResource( "src/main/assets/music/menu.ogg" ) );
+
+    final Table table = getTable();
+    table.defaults().spaceBottom( 30 );
+    table.add( "High scores" ).colspan( 2 );
+
+    final String score = String.valueOf( 0 );
+    table.row();
+    table.add( "You" );
+    table.add( new Label( score, getSkin() ) );
+
+    final TextButton backButton = new TextButton( "Back to main menu", getSkin() );
+    backButton.addListener( new ClickListener()
+    {
+      @Override
+      public void touchUp( final InputEvent event, final float x, final float y, final int pointer, final int button )
+      {
+        super.touchUp( event, x, y, pointer, button );
+        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+        getGame().setScreen( new GameLoopScreen( getGame() ) );
+      }
+    } );
+    table.row();
+    table.add( backButton ).size( 250, 60 ).colspan( 2 );
+
+    final Texture background = StarPunkGame.getGame().getAssetManager().getBackground();
+    final Drawable drawable = new TextureRegionDrawable( new TextureRegion( background ) );
+    table.setBackground( drawable );
   }
 
   @Override
@@ -34,47 +60,5 @@ public final class EndGameScreen
   {
     super.hide();
     getGame().getMusicManager().play( null );
-  }
-
-  @Override
-  public void dispose()
-  {
-    super.dispose();
-    spriteBatch.dispose();
-  }
-
-  @Override
-  public void draw( final float delta )
-  {
-    Gdx.gl.glClear( GL10.GL_COLOR_BUFFER_BIT );
-
-    viewMatrix.setToOrtho2D( 0, 0, 480, 320 );
-    spriteBatch.setProjectionMatrix( viewMatrix );
-    spriteBatch.setTransformMatrix( transformMatrix );
-    spriteBatch.begin();
-    spriteBatch.disableBlending();
-    spriteBatch.setColor( Color.WHITE );
-    spriteBatch.draw( StarPunkGame.getGame().getAssetManager().getBackground(),
-                      0,
-                      0,
-                      480,
-                      320,
-                      0,
-                      0,
-                      512,
-                      512,
-                      false,
-                      false );
-    spriteBatch.end();
-  }
-
-  @Override
-  public void update( final float delta )
-  {
-    if( Gdx.input.isTouched() )
-    {
-      getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
-      getGame().setScreen( new GameLoopScreen( getGame() ) );
-    }
   }
 }
