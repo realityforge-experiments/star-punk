@@ -3,7 +3,7 @@ package starpunk;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import starpunk.screens.GameLoopScreen;
+import starpunk.screens.SplashScreen;
 import starpunk.services.AssetManager;
 import starpunk.services.MusicManager;
 import starpunk.services.PreferencesManager;
@@ -37,7 +37,7 @@ public final class StarPunkGame
     log( "Creating game on " + Gdx.app.getType() );
     _assetManager.initialize();
     _preferencesManager.loadPreferences();
-    setScreen( new GameLoopScreen( this ) );
+    setScreen( new SplashScreen( this ) );
   }
 
   @Override

@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import starpunk.StarPunkGame;
 
 public abstract class Base2DScreen
@@ -38,6 +40,16 @@ public abstract class Base2DScreen
     }
   }
 
+  @Nonnull
+  protected final Stage getStage()
+  {
+    if( null == _stage )
+    {
+      throw new NullPointerException( "_stage" );
+    }
+    return _stage;
+  }
+
   @Override
   public void show()
   {
@@ -49,7 +61,7 @@ public abstract class Base2DScreen
   @Override
   public void update( final float delta )
   {
-    _stage.act( delta );
+    getStage().act( delta );
   }
 
   @Override
@@ -58,11 +70,11 @@ public abstract class Base2DScreen
     Gdx.gl.glClearColor( 0f, 0f, 0f, 1f );
     Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT );
 
-    _stage.draw();
+    getStage().draw();
 
     if( getGame().isDebugMode() )
     {
-      Table.drawDebug( _stage );
+      Table.drawDebug( getStage() );
     }
   }
 
@@ -86,7 +98,7 @@ public abstract class Base2DScreen
       {
         _table.debug();
       }
-      _stage.addActor( _table );
+      getStage().addActor( _table );
     }
     return _table;
   }
