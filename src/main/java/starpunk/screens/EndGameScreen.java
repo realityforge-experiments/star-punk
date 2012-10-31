@@ -44,7 +44,7 @@ public final class EndGameScreen
       {
         super.touchUp( event, x, y, pointer, button );
         getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
-        getGame().setScreen( new GameLoopScreen( getGame() ) );
+        getGame().setScreen( new MenuScreen( getGame() ) );
       }
     } );
     table.row();

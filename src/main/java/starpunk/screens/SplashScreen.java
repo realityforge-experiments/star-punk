@@ -53,6 +53,6 @@ public class SplashScreen
 
   private void gotoNextScreen()
   {
-    getGame().setScreen( new GameLoopScreen( getGame() ) );
+    getGame().setScreen( new MenuScreen( getGame() ) );
   }
 }
