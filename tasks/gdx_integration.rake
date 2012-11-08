@@ -30,7 +30,7 @@ if GDX_VERSION == '0.9.6'
                               "extensions/gdx-stb-truetype-natives.jar")
 end
 
-GDX = struct(libraries.each_with_object({}) {|e, a| a[e.key] = e.spec })
+GDX = struct(libraries.inject({}) {|memo, lib| memo[lib.key] = lib.spec; memo })
 
 target_dir = "target/libgdx-#{GDX_VERSION}"
 
