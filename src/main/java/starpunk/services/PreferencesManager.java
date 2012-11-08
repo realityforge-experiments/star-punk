@@ -29,48 +29,48 @@ public final class PreferencesManager
     musicManager.setVolume( getMusicVolume() );
   }
 
-  protected boolean isSoundEnabled()
+  public boolean isSoundEnabled()
   {
     return getPreferences().getBoolean( SOUND_ENABLED_KEY, true );
   }
 
-  protected void setSoundEnabled( final boolean soundEnabled )
+  public void setSoundEnabled( final boolean soundEnabled )
   {
     getPreferences().putBoolean( SOUND_ENABLED_KEY, soundEnabled );
     getPreferences().flush();
     _game.getSoundManager().setDisabled( !soundEnabled );
   }
 
-  protected boolean isMusicEnabled()
+  public boolean isMusicEnabled()
   {
     return getPreferences().getBoolean( MUSIC_ENABLED_KEY, true );
   }
 
-  protected void setMusicEnabled( final boolean musicEnabled )
+  public void setMusicEnabled( final boolean musicEnabled )
   {
     getPreferences().putBoolean( MUSIC_ENABLED_KEY, musicEnabled );
     getPreferences().flush();
     _game.getMusicManager().setDisabled( !musicEnabled );
   }
 
-  protected float getSoundVolume()
+  public float getSoundVolume()
   {
     return getPreferences().getFloat( SOUND_VOLUME_KEY, 0.5f );
   }
 
-  protected void setSoundVolume( final float volume )
+  public void setSoundVolume( final float volume )
   {
     _game.getSoundManager().setVolume( volume );
     getPreferences().putFloat( SOUND_VOLUME_KEY, volume );
     getPreferences().flush();
   }
 
-  protected float getMusicVolume()
+  public float getMusicVolume()
   {
     return getPreferences().getFloat( MUSIC_VOLUME_KEY, 0.5f );
   }
 
-  protected void setMusicVolume( final float volume )
+  public void setMusicVolume( final float volume )
   {
     _game.getMusicManager().setVolume( volume );
     getPreferences().putFloat( MUSIC_VOLUME_KEY, volume );

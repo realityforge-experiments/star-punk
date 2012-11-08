@@ -59,6 +59,11 @@ public final class StarPunkGame
     return "StarPunk";
   }
 
+  public PreferencesManager getPreferencesManager()
+  {
+    return _preferencesManager;
+  }
+
   public MusicManager getMusicManager()
   {
     return _musicManager;

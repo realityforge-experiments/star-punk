@@ -39,6 +39,20 @@ public class MenuScreen
     table.add( startGameButton ).size( 300, 60 ).uniform().spaceBottom( 10 );
     table.row();
 
+    final TextButton optionsButton = new TextButton( "Options", getSkin() );
+    optionsButton.addListener( new ClickListener()
+    {
+      @Override
+      public void touchUp( final InputEvent event, final float x, final float y, final int pointer, final int button )
+      {
+        super.touchUp( event, x, y, pointer, button );
+        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+        getGame().setScreen( new OptionsScreen( getGame() ) );
+      }
+    } );
+    table.add( optionsButton ).size( 300, 60 ).uniform().spaceBottom( 10 );
+    table.row();
+
     final TextButton highScoresButton = new TextButton( "High Scores", getSkin() );
     highScoresButton.addListener( new ClickListener()
     {
