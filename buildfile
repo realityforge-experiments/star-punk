@@ -1,3 +1,5 @@
+require 'buildr/git_auto_version'
+
 desc "StarPunk: An experiment to build a little space game"
 define('star-punk') do
   project.group = 'org.realityforge'
