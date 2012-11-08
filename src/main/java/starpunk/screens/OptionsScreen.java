@@ -17,8 +17,6 @@ import starpunk.services.SoundResource;
 public class OptionsScreen
   extends Base2DScreen
 {
-  private Label _musicVolume;
-
   public OptionsScreen( final StarPunkGame game )
   {
     super( game );
@@ -34,14 +32,49 @@ public class OptionsScreen
     table.columnDefaults( 0 ).padRight( 20 );
     table.add( "Options" ).colspan( 3 );
 
+    final CheckBox soundCheckbox = new CheckBox( "", getSkin() );
+    soundCheckbox.setChecked( getGame().getPreferencesManager().isSoundEnabled() );
+    soundCheckbox.addListener( new ChangeListener()
+    {
+      @Override
+      public void changed( final ChangeEvent event, final Actor actor )
+      {
+        getGame().getPreferencesManager().setSoundEnabled( soundCheckbox.isChecked() );
+        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+      }
+    } );
+    table.row();
+    table.add( "Sound Effects" );
+    table.add( soundCheckbox ).colspan( 2 ).left();
+
+    final Label soundVolumeLabel =
+      new Label( formatVolume( getGame().getPreferencesManager().getSoundVolume() ), getSkin() );
+
+    // range is [0.0,1.0]; step is 0.1f
+    final Slider soundVolumeSlider = new Slider( 0f, 1f, 0.1f, false, getSkin() );
+    soundVolumeSlider.setValue( getGame().getPreferencesManager().getSoundVolume() );
+    soundVolumeSlider.addListener( new ChangeListener()
+    {
+      @Override
+      public void changed( final ChangeEvent event, final Actor actor )
+      {
+        final float value = ( (Slider) actor ).getValue();
+        getGame().getPreferencesManager().setSoundVolume( value );
+        soundVolumeLabel.setText( formatVolume( getGame().getPreferencesManager().getSoundVolume() ) );
+      }
+    } );
+
+    table.row();
+    table.add( "Music Volume" );
+    table.add( soundVolumeSlider );
+    table.add( soundVolumeLabel ).width( 40 );
+
     final CheckBox musicCheckbox = new CheckBox( "", getSkin() );
     musicCheckbox.setChecked( getGame().getPreferencesManager().isMusicEnabled() );
     musicCheckbox.addListener( new ChangeListener()
     {
       @Override
-      public void changed(
-        final ChangeEvent event,
-        final Actor actor )
+      public void changed( final ChangeEvent event, final Actor actor )
       {
         final boolean enabled = musicCheckbox.isChecked();
         getGame().getPreferencesManager().setMusicEnabled( enabled );
@@ -56,26 +89,27 @@ public class OptionsScreen
     table.add( "Music" );
     table.add( musicCheckbox ).colspan( 2 ).left();
 
+    final Label musicVolume =
+      new Label( formatVolume( getGame().getPreferencesManager().getMusicVolume() ), getSkin() );
+
     // range is [0.0,1.0]; step is 0.1f
-    final Slider volumeSlider = new Slider( 0f, 1f, 0.1f, false, getSkin() );
-    volumeSlider.setValue( getGame().getPreferencesManager().getMusicVolume() );
-    volumeSlider.addListener( new ChangeListener()
+    final Slider musicVolumeSlider = new Slider( 0f, 1f, 0.1f, false, getSkin() );
+    musicVolumeSlider.setValue( getGame().getPreferencesManager().getMusicVolume() );
+    musicVolumeSlider.addListener( new ChangeListener()
     {
       @Override
       public void changed( final ChangeEvent event, final Actor actor )
       {
         final float value = ( (Slider) actor ).getValue();
         getGame().getPreferencesManager().setMusicVolume( value );
-        updateMusicVolumeLabel();
+        musicVolume.setText( formatVolume( getGame().getPreferencesManager().getMusicVolume() ) );
       }
     } );
 
-    _musicVolume = new Label( "", getSkin() );
-    updateMusicVolumeLabel();
     table.row();
-    table.add( "Volume" );
-    table.add( volumeSlider );
-    table.add( _musicVolume ).width( 40 );
+    table.add( "Music Volume" );
+    table.add( musicVolumeSlider );
+    table.add( musicVolume ).width( 40 );
 
     // register the back button
     final TextButton backButton = new TextButton( "Back to main menu", getSkin() );
@@ -86,17 +120,15 @@ public class OptionsScreen
       {
         super.touchUp( event, x, y, pointer, button );
         getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
-        getGame().setScreen( new GameLoopScreen( getGame() ) );
+        getGame().setScreen( new MenuScreen( getGame() ) );
       }
     } );
     table.row();
     table.add( backButton ).size( 250, 60 ).colspan( 3 );
   }
 
-  private void updateMusicVolumeLabel()
+  private String formatVolume( final float volume )
   {
-    final float volume = getGame().getPreferencesManager().getMusicVolume();
-    final String text = String.format( Locale.US, "%1.0f%%", ( volume * 100 ) );
-    _musicVolume.setText( text );
+    return String.format( Locale.US, "%1.0f%%", ( volume * 100 ) );
   }
 }
