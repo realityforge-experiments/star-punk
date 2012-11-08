@@ -6,6 +6,6 @@
 /downloads
 /reports
 /docs
-/_buildr.rb
+/Gemfile.lock
 /bin
 /.bundle
