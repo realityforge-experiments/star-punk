@@ -60,7 +60,9 @@ public final class EntityFactory
 
     final Sprite sprite = new Sprite();
     sprite.setName( "images/u_fighter" );
-    sprite.setLayer( Sprite.Layer.BACKGROUND );
+    sprite.setScaleY( 2 );
+    sprite.setScaleX( 2 );
+    sprite.setLayer( Sprite.Layer.DEFAULT );
 
     e.addComponent( sprite );
     return e;
