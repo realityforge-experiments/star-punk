@@ -1,6 +1,5 @@
 package starpunk.screens;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -30,7 +29,7 @@ public class SplashScreen
     getGame().getMusicManager().play( new MusicResource( "src/main/assets/music/menu.ogg" ) );
 
     final Drawable drawable =
-      new TextureRegionDrawable( new TextureRegion( StarPunkGame.getGame().getAssetManager().getBackground() ) );
+      new TextureRegionDrawable( StarPunkGame.getGame().getAssetManager().getSprite( "images/backgrounds/splash" ) );
 
     final Image image = new Image( drawable, Scaling.stretch );
     image.setFillParent( true );

@@ -1,7 +1,6 @@
 package starpunk.screens;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -50,8 +49,8 @@ public final class EndGameScreen
     table.row();
     table.add( backButton ).size( 250, 60 ).colspan( 2 );
 
-    final Texture background = StarPunkGame.getGame().getAssetManager().getBackground();
-    final Drawable drawable = new TextureRegionDrawable( new TextureRegion( background ) );
+    final TextureAtlas.AtlasRegion background = StarPunkGame.getGame().getAssetManager().getSprite( "images/backgrounds/splash" );
+    final Drawable drawable = new TextureRegionDrawable( background );
     table.setBackground( drawable );
   }
 

@@ -1,7 +1,6 @@
 package starpunk.services;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Disposable;
 import java.util.HashMap;
@@ -12,20 +11,16 @@ public final class AssetManager
 {
   private final HashMap<String, TextureAtlas.AtlasRegion> _sprites = new HashMap<String, TextureAtlas.AtlasRegion>();
   private final HashMap<String, TextureAtlas> _textures = new HashMap<String, TextureAtlas>();
-  private Texture _background;
 
   public void initialize()
   {
-    final String textureName = "target/assets/game";
+    final String textureName = "_assets/game.atlas";
     final TextureAtlas textureAtlas = new TextureAtlas( Gdx.files.local( textureName ) );
     for( final TextureAtlas.AtlasRegion r : textureAtlas.getRegions() )
     {
       _sprites.put( r.name, r );
     }
     _textures.put( textureName, textureAtlas );
-
-    _background = new Texture( Gdx.files.local( "assets/images/backgrounds/splash.gif" ) );
-    _background.setFilter( Texture.TextureFilter.Linear, Texture.TextureFilter.Linear );
   }
 
   public void dispose()
@@ -36,12 +31,6 @@ public final class AssetManager
     }
     _textures.clear();
     _sprites.clear();
-    _background.dispose();
-  }
-
-  public Texture getBackground()
-  {
-    return _background;
   }
 
   public TextureAtlas.AtlasRegion getSprite( final String name )
