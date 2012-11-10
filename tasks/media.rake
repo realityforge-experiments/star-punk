@@ -38,3 +38,11 @@ images.each do |image|
   end
   task("assets").enhance [filename]
 end
+
+splash_filename = File.expand_path("assets/images/backgrounds/splash.gif")
+file(splash_filename => %w(unzip_tyrian_assets)) do
+  mkdir_p File.dirname(splash_filename)
+  cp "#{target_dir}/TSHPSP~1.GIF", splash_filename
+end
+
+task("assets").enhance [splash_filename]
