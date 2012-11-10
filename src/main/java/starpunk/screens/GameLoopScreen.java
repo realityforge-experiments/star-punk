@@ -32,6 +32,7 @@ public final class GameLoopScreen
     {
       EntityFactory.createStar( _world, StarPunkGame.WIDTH, StarPunkGame.HEIGHT ).addToWorld();
     }
+    EntityFactory.createShip( _world, 0, 0 ).addToWorld();
   }
 
   @Override
