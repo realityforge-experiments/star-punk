@@ -115,7 +115,7 @@ public final class SpriteRenderSystem
     Collections.sort( _sortedEntities, new Comparator<Entity>()
     {
       @Override
-      public int compare( Entity e1, Entity e2 )
+      public int compare( final Entity e1, final Entity e2 )
       {
         final Sprite s1 = _spriteMapper.get( e1 );
         final Sprite s2 = _spriteMapper.get( e2 );
