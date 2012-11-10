@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import starpunk.StarPunkGame;
 
 public abstract class Base2DScreen

@@ -5,9 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import starpunk.screens.SplashScreen;
 import starpunk.services.AssetManager;
-import starpunk.services.MusicManager;
-import starpunk.services.PreferencesManager;
-import starpunk.services.SoundManager;
+import starpunk.services.music.MusicManager;
+import starpunk.services.preference.PreferenceManager;
+import starpunk.services.sound.SoundManager;
 
 public final class StarPunkGame
   extends Game
@@ -18,7 +18,7 @@ public final class StarPunkGame
   private final AssetManager _assetManager = new AssetManager();
   private final MusicManager _musicManager = new MusicManager();
   private final SoundManager _soundManager = new SoundManager();
-  private final PreferencesManager _preferencesManager = new PreferencesManager( this );
+  private final PreferenceManager _preferenceManager = new PreferenceManager( this );
   private static StarPunkGame c_game;
 
   public static StarPunkGame getGame()
@@ -36,7 +36,7 @@ public final class StarPunkGame
   {
     log( "Creating game on " + Gdx.app.getType() );
     _assetManager.initialize();
-    _preferencesManager.loadPreferences();
+    _preferenceManager.loadPreferences();
     setScreen( new SplashScreen( this ) );
   }
 
@@ -59,9 +59,9 @@ public final class StarPunkGame
     return "StarPunk";
   }
 
-  public PreferencesManager getPreferencesManager()
+  public PreferenceManager getPreferenceManager()
   {
-    return _preferencesManager;
+    return _preferenceManager;
   }
 
   public MusicManager getMusicManager()

@@ -10,8 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import starpunk.StarPunkGame;
-import starpunk.services.MusicResource;
-import starpunk.services.SoundResource;
+import starpunk.services.music.MusicResource;
+import starpunk.services.sound.SoundResource;
 
 public final class EndGameScreen
   extends Base2DScreen

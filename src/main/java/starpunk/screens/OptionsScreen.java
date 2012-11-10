@@ -11,8 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.Locale;
 import starpunk.StarPunkGame;
-import starpunk.services.MusicResource;
-import starpunk.services.SoundResource;
+import starpunk.services.music.MusicResource;
+import starpunk.services.sound.SoundResource;
 
 public class OptionsScreen
   extends Base2DScreen
@@ -33,13 +33,13 @@ public class OptionsScreen
     table.add( "Options" ).colspan( 3 );
 
     final CheckBox soundCheckbox = new CheckBox( "", getSkin() );
-    soundCheckbox.setChecked( getGame().getPreferencesManager().isSoundEnabled() );
+    soundCheckbox.setChecked( getGame().getPreferenceManager().isSoundEnabled() );
     soundCheckbox.addListener( new ChangeListener()
     {
       @Override
       public void changed( final ChangeEvent event, final Actor actor )
       {
-        getGame().getPreferencesManager().setSoundEnabled( soundCheckbox.isChecked() );
+        getGame().getPreferenceManager().setSoundEnabled( soundCheckbox.isChecked() );
         getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
       }
     } );
@@ -48,19 +48,19 @@ public class OptionsScreen
     table.add( soundCheckbox ).colspan( 2 ).left();
 
     final Label soundVolumeLabel =
-      new Label( formatVolume( getGame().getPreferencesManager().getSoundVolume() ), getSkin() );
+      new Label( formatVolume( getGame().getPreferenceManager().getSoundVolume() ), getSkin() );
 
     // range is [0.0,1.0]; step is 0.1f
     final Slider soundVolumeSlider = new Slider( 0f, 1f, 0.1f, false, getSkin() );
-    soundVolumeSlider.setValue( getGame().getPreferencesManager().getSoundVolume() );
+    soundVolumeSlider.setValue( getGame().getPreferenceManager().getSoundVolume() );
     soundVolumeSlider.addListener( new ChangeListener()
     {
       @Override
       public void changed( final ChangeEvent event, final Actor actor )
       {
         final float value = ( (Slider) actor ).getValue();
-        getGame().getPreferencesManager().setSoundVolume( value );
-        soundVolumeLabel.setText( formatVolume( getGame().getPreferencesManager().getSoundVolume() ) );
+        getGame().getPreferenceManager().setSoundVolume( value );
+        soundVolumeLabel.setText( formatVolume( getGame().getPreferenceManager().getSoundVolume() ) );
       }
     } );
 
@@ -70,14 +70,14 @@ public class OptionsScreen
     table.add( soundVolumeLabel ).width( 40 );
 
     final CheckBox musicCheckbox = new CheckBox( "", getSkin() );
-    musicCheckbox.setChecked( getGame().getPreferencesManager().isMusicEnabled() );
+    musicCheckbox.setChecked( getGame().getPreferenceManager().isMusicEnabled() );
     musicCheckbox.addListener( new ChangeListener()
     {
       @Override
       public void changed( final ChangeEvent event, final Actor actor )
       {
         final boolean enabled = musicCheckbox.isChecked();
-        getGame().getPreferencesManager().setMusicEnabled( enabled );
+        getGame().getPreferenceManager().setMusicEnabled( enabled );
         getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
         if( enabled )
         {
@@ -90,19 +90,19 @@ public class OptionsScreen
     table.add( musicCheckbox ).colspan( 2 ).left();
 
     final Label musicVolume =
-      new Label( formatVolume( getGame().getPreferencesManager().getMusicVolume() ), getSkin() );
+      new Label( formatVolume( getGame().getPreferenceManager().getMusicVolume() ), getSkin() );
 
     // range is [0.0,1.0]; step is 0.1f
     final Slider musicVolumeSlider = new Slider( 0f, 1f, 0.1f, false, getSkin() );
-    musicVolumeSlider.setValue( getGame().getPreferencesManager().getMusicVolume() );
+    musicVolumeSlider.setValue( getGame().getPreferenceManager().getMusicVolume() );
     musicVolumeSlider.addListener( new ChangeListener()
     {
       @Override
       public void changed( final ChangeEvent event, final Actor actor )
       {
         final float value = ( (Slider) actor ).getValue();
-        getGame().getPreferencesManager().setMusicVolume( value );
-        musicVolume.setText( formatVolume( getGame().getPreferencesManager().getMusicVolume() ) );
+        getGame().getPreferenceManager().setMusicVolume( value );
+        musicVolume.setText( formatVolume( getGame().getPreferenceManager().getMusicVolume() ) );
       }
     } );
 

@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import starpunk.EntityFactory;
 import starpunk.StarPunkGame;
-import starpunk.services.MusicResource;
-import starpunk.services.SoundResource;
+import starpunk.services.music.MusicResource;
+import starpunk.services.sound.SoundResource;
 import starpunk.systems.MovementSystem;
 import starpunk.systems.SpriteRenderSystem;
 

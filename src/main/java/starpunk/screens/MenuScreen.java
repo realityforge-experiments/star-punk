@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import starpunk.StarPunkGame;
-import starpunk.services.SoundResource;
+import starpunk.services.sound.SoundResource;
 
 public class MenuScreen
   extends Base2DScreen
