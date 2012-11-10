@@ -1,8 +1,7 @@
 package com.artemis;
 
-import java.util.BitSet;
-
 import com.artemis.utils.Bag;
+import java.util.BitSet;
 
 public class ComponentManager extends Manager {
 	private Bag<Bag<Component>> componentsByType;
