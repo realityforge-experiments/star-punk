@@ -91,3 +91,7 @@ task("assets:prepare").enhance [splash_filename]
 task("assets:prepare") do
   cp_r Dir["#{base_dir}/src/main/resources/*"], raw_assets_dir
 end
+
+task("assets:compile") do
+  cp_r Dir["#{base_dir}/src/main/assets/*"], compiled_assets_dir
+end
