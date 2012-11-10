@@ -67,11 +67,14 @@ public final class GameLoopScreen
   @Override
   public void render( final float delta )
   {
-    super.render( delta );
     if( Gdx.input.isTouched() )
     {
       getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
       getGame().setScreen( new EndGameScreen( getGame() ) );
+    }
+    else
+    {
+      super.render( delta );
     }
   }
 }
