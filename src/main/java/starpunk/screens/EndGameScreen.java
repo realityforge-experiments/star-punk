@@ -9,8 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import starpunk.StarPunkGame;
-import starpunk.services.music.MusicResource;
-import starpunk.services.sound.SoundResource;
 
 public final class EndGameScreen
   extends Base2DScreen
@@ -24,7 +22,7 @@ public final class EndGameScreen
   public void show()
   {
     super.show();
-    getGame().getMusicManager().play( new MusicResource( "src/main/assets/music/menu.ogg" ) );
+    getGame().getMusicManager().play( MediaConstants.MENU_MUSIC );
 
     final Table table = getTable();
     table.defaults().spaceBottom( 30 );
@@ -42,7 +40,7 @@ public final class EndGameScreen
       public void touchUp( final InputEvent event, final float x, final float y, final int pointer, final int button )
       {
         super.touchUp( event, x, y, pointer, button );
-        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+        getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
         getGame().setScreen( new MenuScreen( getGame() ) );
       }
     } );

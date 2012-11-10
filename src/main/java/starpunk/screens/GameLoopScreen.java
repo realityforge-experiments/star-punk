@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import starpunk.logic.EntityFactory;
 import starpunk.StarPunkGame;
-import starpunk.services.music.MusicResource;
-import starpunk.services.sound.SoundResource;
 import starpunk.logic.systems.MovementSystem;
 import starpunk.logic.systems.SpriteRenderSystem;
 
@@ -39,7 +37,7 @@ public final class GameLoopScreen
   public void show()
   {
     super.show();
-    getGame().getMusicManager().play( new MusicResource( "src/main/assets/music/level.ogg" ) );
+    getGame().getMusicManager().play( MediaConstants.LEVEL_MUSIC );
   }
 
   @Override
@@ -69,7 +67,7 @@ public final class GameLoopScreen
   {
     if( Gdx.input.isTouched() )
     {
-      getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+      getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
       getGame().setScreen( new EndGameScreen( getGame() ) );
     }
     else

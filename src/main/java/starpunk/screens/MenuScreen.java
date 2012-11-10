@@ -5,7 +5,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import starpunk.StarPunkGame;
-import starpunk.services.sound.SoundResource;
 
 public class MenuScreen
   extends Base2DScreen
@@ -32,7 +31,7 @@ public class MenuScreen
       public void touchUp( final InputEvent event, final float x, final float y, final int pointer, final int button )
       {
         super.touchUp( event, x, y, pointer, button );
-        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+        getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
         getGame().setScreen( new GameLoopScreen( getGame() ) );
       }
     } );
@@ -46,7 +45,7 @@ public class MenuScreen
       public void touchUp( final InputEvent event, final float x, final float y, final int pointer, final int button )
       {
         super.touchUp( event, x, y, pointer, button );
-        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+        getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
         getGame().setScreen( new OptionsScreen( getGame() ) );
       }
     } );
@@ -60,7 +59,7 @@ public class MenuScreen
       public void touchUp( final InputEvent event, final float x, final float y, final int pointer, final int button )
       {
         super.touchUp( event, x, y, pointer, button );
-        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+        getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
         getGame().setScreen( new EndGameScreen( getGame() ) );
       }
     } );

@@ -11,8 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.Locale;
 import starpunk.StarPunkGame;
-import starpunk.services.music.MusicResource;
-import starpunk.services.sound.SoundResource;
 
 public class OptionsScreen
   extends Base2DScreen
@@ -40,7 +38,7 @@ public class OptionsScreen
       public void changed( final ChangeEvent event, final Actor actor )
       {
         getGame().getPreferenceManager().setSoundEnabled( soundCheckbox.isChecked() );
-        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+        getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
       }
     } );
     table.row();
@@ -78,10 +76,10 @@ public class OptionsScreen
       {
         final boolean enabled = musicCheckbox.isChecked();
         getGame().getPreferenceManager().setMusicEnabled( enabled );
-        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+        getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
         if( enabled )
         {
-          getGame().getMusicManager().play( new MusicResource( "src/main/assets/music/menu.ogg" ) );
+          getGame().getMusicManager().play( MediaConstants.MENU_MUSIC );
         }
       }
     } );
@@ -119,7 +117,7 @@ public class OptionsScreen
       public void touchUp( final InputEvent event, final float x, final float y, final int pointer, final int button )
       {
         super.touchUp( event, x, y, pointer, button );
-        getGame().getSoundManager().play( new SoundResource( "src/main/assets/sounds/click.wav" ) );
+        getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
         getGame().setScreen( new MenuScreen( getGame() ) );
       }
     } );
