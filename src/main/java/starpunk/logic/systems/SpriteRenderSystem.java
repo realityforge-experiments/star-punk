@@ -112,7 +112,8 @@ public final class SpriteRenderSystem
   protected void inserted( final Entity e )
   {
     final Sprite sprite = _spriteMapper.get( e );
-    _regionsByEntity.set( e.getId(), getGame().getSpriteManager().getSprite( sprite.getName() ) );
+    final AtlasRegion sprite1 = getGame().getSpriteManager().getSprite( sprite.getName(), sprite.getFrame() );
+    _regionsByEntity.set( e.getId(), sprite1 );
 
     _sortedEntities.add( e );
 

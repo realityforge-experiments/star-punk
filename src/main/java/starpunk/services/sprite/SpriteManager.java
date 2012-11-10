@@ -18,9 +18,14 @@ public final class SpriteManager
     final TextureAtlas textureAtlas = new TextureAtlas( Gdx.files.internal( textureName ) );
     for( final TextureAtlas.AtlasRegion r : textureAtlas.getRegions() )
     {
-      _sprites.put( r.name, r );
+      _sprites.put( toKey( r.name, r.index ), r );
     }
     _textures.put( textureName, textureAtlas );
+  }
+
+  private String toKey( final String name, final int index )
+  {
+    return index == -1 ? name : name + '-' + index;
   }
 
   public void dispose()
@@ -36,5 +41,10 @@ public final class SpriteManager
   public TextureAtlas.AtlasRegion getSprite( final String name )
   {
     return _sprites.get( name );
+  }
+
+  public TextureAtlas.AtlasRegion getSprite( final String name, final int index )
+  {
+    return _sprites.get( toKey( name, index ) );
   }
 }

@@ -6,6 +6,7 @@ public final class Sprite
   extends Component
 {
   private String _name;
+  private int _frame = -1;
   private float _scaleX = 1;
   private float _scaleY = 1;
   private float _rotation;
@@ -23,6 +24,16 @@ public final class Sprite
   public void setName( final String name )
   {
     _name = name;
+  }
+
+  public int getFrame()
+  {
+    return _frame;
+  }
+
+  public void setFrame( final int frame )
+  {
+    _frame = frame;
   }
 
   public float getScaleX()
