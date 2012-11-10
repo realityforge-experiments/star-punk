@@ -52,8 +52,6 @@ public final class GameLoopScreen
   @Override
   public void update( final float delta )
   {
-    _camera.update();
-
     _world.setDelta( delta );
     _world.process();
   }
@@ -61,6 +59,7 @@ public final class GameLoopScreen
   @Override
   public void draw( final float delta )
   {
+    _camera.update();
     Gdx.gl20.glClear( GL20.GL_COLOR_BUFFER_BIT );
     _renderSystem.process();
   }
