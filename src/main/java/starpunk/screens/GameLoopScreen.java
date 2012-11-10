@@ -28,7 +28,7 @@ public final class GameLoopScreen
     _world.setSystem( new MovementSystem() );
     _world.initialize();
 
-    for( int i = 0; 500 > i; i++ )
+    for( int i = 0; i < 500; i++ )
     {
       EntityFactory.createStar( _world, StarPunkGame.WIDTH, StarPunkGame.HEIGHT ).addToWorld();
     }
