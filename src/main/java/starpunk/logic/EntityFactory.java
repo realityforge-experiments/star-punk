@@ -13,9 +13,7 @@ public final class EntityFactory
   {
   }
 
-  /**
-   * Create a star entity within a particular bound.
-   */
+  /** Create a star entity within a particular bound. */
   public static Entity createStar( final World world, final int width, final int height )
   {
     final Entity e = world.createEntity();

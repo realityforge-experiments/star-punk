@@ -11,8 +11,8 @@ public class Main
     configuration.fullscreen = false;
     configuration.width = StarPunkGame.WIDTH;
     configuration.height = StarPunkGame.HEIGHT;
-		configuration.useGL20 = true;
-		configuration.vSyncEnabled = true;
+    configuration.useGL20 = true;
+    configuration.vSyncEnabled = true;
     configuration.title = "Star Punk";
     new LwjglApplication( new StarPunkGame(), configuration );
   }
