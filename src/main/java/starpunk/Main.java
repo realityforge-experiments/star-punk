@@ -2,17 +2,16 @@ package starpunk;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.tools.imagepacker.TexturePacker;
+import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
 
 public class Main
 {
   public static void main( final String[] args )
   {
-    final TexturePacker.Settings settings = new TexturePacker.Settings();
+    final TexturePacker2.Settings settings = new TexturePacker2.Settings();
     settings.maxWidth = 1024;
     settings.maxHeight = 1024;
-    TexturePacker.process( settings, "src/main/resources", "target/assets", "game" );
+    TexturePacker2.process( settings, "src/main/resources", "target/assets", "game.atlas" );
 
     final LwjglApplicationConfiguration configuration = new LwjglApplicationConfiguration();
     configuration.fullscreen = false;
