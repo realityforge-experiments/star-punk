@@ -87,3 +87,7 @@ file(splash_filename => %w(unzip_tyrian_assets)) do
 end
 
 task("assets:prepare").enhance [splash_filename]
+
+task("assets:prepare") do
+  cp_r Dir["#{base_dir}/src/main/resources/*"], raw_assets_dir
+end
