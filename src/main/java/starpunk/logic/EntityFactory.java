@@ -46,4 +46,23 @@ public final class EntityFactory
 
     return e;
   }
+
+  public static Entity createShip( final World world, final int x, final int y )
+  {
+    final Entity e = world.createEntity();
+
+    final Position position = new Position();
+    position.setX( x );
+    position.setY( y );
+    e.addComponent( position );
+
+    e.addComponent( new Velocity() );
+
+    final Sprite sprite = new Sprite();
+    sprite.setName( "images/u_fighter" );
+    sprite.setLayer( Sprite.Layer.BACKGROUND );
+
+    e.addComponent( sprite );
+    return e;
+  }
 }
