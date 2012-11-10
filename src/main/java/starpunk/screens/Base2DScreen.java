@@ -81,7 +81,7 @@ public abstract class Base2DScreen
   {
     if( null == _skin )
     {
-      final FileHandle skinFile = Gdx.files.internal( "src/main/assets/skin/uiskin.json" );
+      final FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
       _skin = new Skin( skinFile );
     }
     return _skin;

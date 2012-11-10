@@ -14,8 +14,8 @@ public final class SpriteManager
 
   public void initialize()
   {
-    final String textureName = "_assets/game.atlas";
-    final TextureAtlas textureAtlas = new TextureAtlas( Gdx.files.local( textureName ) );
+    final String textureName = "game.atlas";
+    final TextureAtlas textureAtlas = new TextureAtlas( Gdx.files.internal( textureName ) );
     for( final TextureAtlas.AtlasRegion r : textureAtlas.getRegions() )
     {
       _sprites.put( r.name, r );
