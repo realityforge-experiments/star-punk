@@ -108,7 +108,7 @@ public final class SpriteRenderSystem
   protected void inserted( final Entity e )
   {
     final Sprite sprite = _spriteMapper.get( e );
-    _regionsByEntity.set( e.getId(), StarPunkGame.getGame().getAssetManager().getSprite( sprite.getName() ) );
+    _regionsByEntity.set( e.getId(), StarPunkGame.getGame().getSpriteManager().getSprite( sprite.getName() ) );
 
     _sortedEntities.add( e );
 
