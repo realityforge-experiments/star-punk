@@ -66,7 +66,6 @@ public final class SpriteRenderSystem
     return true;
   }
 
-
   @Override
   protected void processEntities( final ImmutableBag<Entity> entities )
   {
@@ -91,15 +90,15 @@ public final class SpriteRenderSystem
         float posX = position.getX() - ( spriteRegion.getRegionWidth() / 2 * sprite.getScaleX() );
         float posY = position.getY() - ( spriteRegion.getRegionHeight() / 2 * sprite.getScaleY() );
         _batch.draw( spriteRegion,
-                    posX,
-                    posY,
-                    0,
-                    0,
-                    spriteRegion.getRegionWidth(),
-                    spriteRegion.getRegionHeight(),
-                    sprite.getScaleX(),
-                    sprite.getScaleY(),
-                    sprite.getRotation() );
+                     posX,
+                     posY,
+                     0,
+                     0,
+                     spriteRegion.getRegionWidth(),
+                     spriteRegion.getRegionHeight(),
+                     sprite.getScaleX(),
+                     sprite.getScaleY(),
+                     sprite.getRotation() );
       }
     }
   }
