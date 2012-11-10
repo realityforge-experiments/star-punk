@@ -4,12 +4,12 @@ import com.artemis.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import starpunk.EntityFactory;
+import starpunk.logic.EntityFactory;
 import starpunk.StarPunkGame;
 import starpunk.services.music.MusicResource;
 import starpunk.services.sound.SoundResource;
-import starpunk.systems.MovementSystem;
-import starpunk.systems.SpriteRenderSystem;
+import starpunk.logic.systems.MovementSystem;
+import starpunk.logic.systems.SpriteRenderSystem;
 
 public final class GameLoopScreen
   extends BaseScreen
