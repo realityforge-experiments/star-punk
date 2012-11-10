@@ -4,8 +4,8 @@ import com.artemis.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import starpunk.logic.EntityFactory;
 import starpunk.StarPunkGame;
+import starpunk.logic.EntityFactory;
 import starpunk.logic.systems.MovementSystem;
 import starpunk.logic.systems.SpriteRenderSystem;
 
