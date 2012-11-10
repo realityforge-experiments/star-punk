@@ -16,7 +16,18 @@ namespace 'assets' do
   task 'prepare'
 
   desc 'Compile the assets'
-  task 'compile' => %w(assets:prepare)
+  task 'compile' => %w(assets:prepare) do
+    cp = Buildr.project('star-punk').compile.dependencies.each(&:invoke).map(&:to_s)
+    args = []
+    args << raw_assets_dir
+    args << compiled_assets_dir
+    args << 'game.atlas'
+
+    java_args = %w(-Djava.awt.headless=true)
+
+    Java::Commands.java 'com.badlogic.gdx.tools.imagepacker.TexturePacker2',
+                        *(args + [{ :classpath => cp, :java_args => java_args }])
+  end
 
 
   desc 'Cleanup assets'
