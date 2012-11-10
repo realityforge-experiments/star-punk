@@ -25,17 +25,22 @@ public final class SpriteRenderSystem
   ComponentMapper<Position> _positionMapper;
   @Mapper
   ComponentMapper<Sprite> _spriteMapper;
-
   private SpriteBatch _batch;
   private OrthographicCamera _camera;
-
   private Bag<AtlasRegion> _regionsByEntity;
   private List<Entity> _sortedEntities;
+  private final StarPunkGame _game;
 
-  public SpriteRenderSystem( final OrthographicCamera camera )
+  public SpriteRenderSystem( final StarPunkGame game, final OrthographicCamera camera )
   {
     super( Aspect.getAspectForAll( Position.class, Sprite.class ) );
+    _game = game;
     _camera = camera;
+  }
+
+  protected final StarPunkGame getGame()
+  {
+    return _game;
   }
 
   @Override
@@ -108,7 +113,7 @@ public final class SpriteRenderSystem
   protected void inserted( final Entity e )
   {
     final Sprite sprite = _spriteMapper.get( e );
-    _regionsByEntity.set( e.getId(), StarPunkGame.getGame().getSpriteManager().getSprite( sprite.getName() ) );
+    _regionsByEntity.set( e.getId(), getGame().getSpriteManager().getSprite( sprite.getName() ) );
 
     _sortedEntities.add( e );
 

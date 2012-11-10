@@ -29,7 +29,7 @@ public class SplashScreen
     getGame().getMusicManager().play( new MusicResource( "src/main/assets/music/menu.ogg" ) );
 
     final Drawable drawable =
-      new TextureRegionDrawable( StarPunkGame.getGame().getSpriteManager().getSprite( "images/backgrounds/splash" ) );
+      new TextureRegionDrawable( getGame().getSpriteManager().getSprite( "images/backgrounds/splash" ) );
 
     final Image image = new Image( drawable, Scaling.stretch );
     image.setFillParent( true );

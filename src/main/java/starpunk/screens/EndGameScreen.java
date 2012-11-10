@@ -49,7 +49,7 @@ public final class EndGameScreen
     table.row();
     table.add( backButton ).size( 250, 60 ).colspan( 2 );
 
-    final TextureAtlas.AtlasRegion background = StarPunkGame.getGame().getSpriteManager().getSprite( "images/backgrounds/splash" );
+    final TextureAtlas.AtlasRegion background = getGame().getSpriteManager().getSprite( "images/backgrounds/splash" );
     final Drawable drawable = new TextureRegionDrawable( background );
     table.setBackground( drawable );
   }

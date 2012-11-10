@@ -4,10 +4,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import starpunk.screens.SplashScreen;
-import starpunk.services.sprite.SpriteManager;
 import starpunk.services.music.MusicManager;
 import starpunk.services.preference.PreferenceManager;
 import starpunk.services.sound.SoundManager;
+import starpunk.services.sprite.SpriteManager;
 
 public final class StarPunkGame
   extends Game
@@ -19,17 +19,6 @@ public final class StarPunkGame
   private final MusicManager _musicManager = new MusicManager();
   private final SoundManager _soundManager = new SoundManager();
   private final PreferenceManager _preferenceManager = new PreferenceManager( this );
-  private static StarPunkGame c_game;
-
-  public static StarPunkGame getGame()
-  {
-    return c_game;
-  }
-
-  StarPunkGame()
-  {
-    c_game = this;
-  }
 
   @Override
   public void create()

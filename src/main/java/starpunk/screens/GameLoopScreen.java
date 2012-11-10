@@ -24,7 +24,7 @@ public final class GameLoopScreen
     _camera = new OrthographicCamera( StarPunkGame.WIDTH, StarPunkGame.HEIGHT );
 
     _world = new World();
-    _renderSystem = _world.setSystem( new SpriteRenderSystem( _camera ), true );
+    _renderSystem = _world.setSystem( new SpriteRenderSystem( game, _camera ), true );
     _world.setSystem( new MovementSystem() );
     _world.initialize();
 
