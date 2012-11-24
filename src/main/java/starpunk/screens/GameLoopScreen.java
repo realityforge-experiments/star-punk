@@ -1,12 +1,17 @@
 package starpunk.screens;
 
+import com.artemis.Entity;
 import com.artemis.World;
+import com.artemis.managers.TagManager;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import starpunk.StarPunkGame;
 import starpunk.logic.EntityFactory;
+import starpunk.logic.PlayerInput;
 import starpunk.logic.systems.MovementSystem;
+import starpunk.logic.systems.PlayerMovementSystem;
 import starpunk.logic.systems.SpriteRenderSystem;
 
 public final class GameLoopScreen
@@ -23,14 +28,18 @@ public final class GameLoopScreen
 
     _world = new World();
     _renderSystem = _world.setSystem( new SpriteRenderSystem( game, _camera ), true );
+    _world.setManager( new TagManager() );
     _world.setSystem( new MovementSystem() );
+    _world.setSystem( new PlayerMovementSystem() );
     _world.initialize();
 
     for( int i = 0; i < 500; i++ )
     {
       EntityFactory.createStar( _world, StarPunkGame.WIDTH, StarPunkGame.HEIGHT ).addToWorld();
     }
-    EntityFactory.createShip( _world, 0, 0 ).addToWorld();
+    final Entity ship = EntityFactory.createShip( _world, 0, 0 );
+    ship.addToWorld();
+    _world.getManager( TagManager.class ).register( "PLAYER", ship );
   }
 
   @Override
@@ -50,6 +59,11 @@ public final class GameLoopScreen
   @Override
   public boolean update( final float delta )
   {
+    final PlayerInput input = PlayerInput.getPlayerInput();
+    input.setLeft( Gdx.input.isKeyPressed( Input.Keys.DPAD_LEFT ) );
+    input.setRight( Gdx.input.isKeyPressed( Input.Keys.DPAD_RIGHT ) );
+    input.setUp( Gdx.input.isKeyPressed( Input.Keys.DPAD_UP ) );
+    input.setDown( Gdx.input.isKeyPressed( Input.Keys.DPAD_DOWN ) );
 
     if( Gdx.input.isKeyPressed( Input.Keys.ESCAPE ) )
     {
