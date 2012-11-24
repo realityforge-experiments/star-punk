@@ -3,6 +3,7 @@ package starpunk.logic;
 import com.artemis.Entity;
 import com.artemis.World;
 import com.badlogic.gdx.math.MathUtils;
+import starpunk.logic.components.Acceleration;
 import starpunk.logic.components.Position;
 import starpunk.logic.components.Sprite;
 import starpunk.logic.components.Velocity;
@@ -27,6 +28,7 @@ public final class EntityFactory
     velocity.setVectorX( 0.05f * MathUtils.random( -width / 2, width / 2 ) );
     velocity.setVectorY( 0.05f * MathUtils.random( -height / 2, height / 2 ) );
     e.addComponent( velocity );
+    e.addComponent( new Acceleration() );
 
     final Sprite sprite = new Sprite();
     sprite.setName( "star" );
@@ -55,6 +57,7 @@ public final class EntityFactory
     e.addComponent( position );
 
     e.addComponent( new Velocity() );
+    e.addComponent( new Acceleration() );
 
     final Sprite sprite = new Sprite();
     sprite.setName( "images/u_fighter" );
