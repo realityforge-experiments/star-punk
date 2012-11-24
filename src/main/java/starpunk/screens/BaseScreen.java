@@ -19,15 +19,17 @@ public abstract class BaseScreen
     return _game;
   }
 
-  public abstract void update( float delta );
+  public abstract boolean update( float delta );
 
   public abstract void draw( float delta );
 
   @Override
-  public void render( final float delta )
+  public final void render( final float delta )
   {
-    update( delta );
-    draw( delta );
+    if( update( delta ) )
+    {
+      draw( delta );
+    }
   }
 
   @Override

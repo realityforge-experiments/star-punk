@@ -48,10 +48,21 @@ public final class GameLoopScreen
   }
 
   @Override
-  public void update( final float delta )
+  public boolean update( final float delta )
   {
-    _world.setDelta( delta );
-    _world.process();
+
+    if( Gdx.input.isKeyPressed( Input.Keys.ESCAPE ) )
+    {
+      getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
+      getGame().setScreen( new EndGameScreen( getGame() ) );
+      return false;
+    }
+    else
+    {
+      _world.setDelta( delta );
+      _world.process();
+      return true;
+    }
   }
 
   @Override
@@ -60,19 +71,5 @@ public final class GameLoopScreen
     _camera.update();
     Gdx.gl20.glClear( GL20.GL_COLOR_BUFFER_BIT );
     _renderSystem.process();
-  }
-
-  @Override
-  public void render( final float delta )
-  {
-    if( Gdx.input.isTouched() )
-    {
-      getGame().getSoundManager().play( MediaConstants.CLICK_SOUND );
-      getGame().setScreen( new EndGameScreen( getGame() ) );
-    }
-    else
-    {
-      super.render( delta );
-    }
   }
 }

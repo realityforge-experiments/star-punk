@@ -58,9 +58,10 @@ public abstract class Base2DScreen
   }
 
   @Override
-  public void update( final float delta )
+  public boolean update( final float delta )
   {
     getStage().act( delta );
+    return true;
   }
 
   @Override
