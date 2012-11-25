@@ -25,7 +25,7 @@ public class PlayerManager extends Manager
     entitiesByPlayer = new HashMap<String, Bag<Entity>>();
   }
 
-  public void setPlayer( Entity e, String player )
+  public void setPlayer( final Entity e, final String player )
   {
     playerByEntity.put( e, player );
     Bag<Entity> entities = entitiesByPlayer.get( player );
@@ -37,7 +37,7 @@ public class PlayerManager extends Manager
     entities.add( e );
   }
 
-  public ImmutableBag<Entity> getEntitiesOfPlayer( String player )
+  public ImmutableBag<Entity> getEntitiesOfPlayer( final String player )
   {
     Bag<Entity> entities = entitiesByPlayer.get( player );
     if( entities == null )
@@ -47,12 +47,12 @@ public class PlayerManager extends Manager
     return entities;
   }
 
-  public void removeFromPlayer( Entity e )
+  public void removeFromPlayer( final Entity e )
   {
-    String player = playerByEntity.get( e );
+    final String player = playerByEntity.get( e );
     if( player != null )
     {
-      Bag<Entity> entities = entitiesByPlayer.get( player );
+      final Bag<Entity> entities = entitiesByPlayer.get( player );
       if( entities != null )
       {
         entities.remove( e );
@@ -60,7 +60,7 @@ public class PlayerManager extends Manager
     }
   }
 
-  public String getPlayer( Entity e )
+  public String getPlayer( final Entity e )
   {
     return playerByEntity.get( e );
   }
@@ -71,7 +71,7 @@ public class PlayerManager extends Manager
   }
 
   @Override
-  public void deleted( Entity e )
+  public void deleted( final Entity e )
   {
     removeFromPlayer( e );
   }

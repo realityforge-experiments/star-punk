@@ -14,7 +14,7 @@ import com.artemis.utils.ImmutableBag;
 public abstract class EntityProcessingSystem extends EntitySystem
 {
 
-  public EntityProcessingSystem( Aspect aspect )
+  public EntityProcessingSystem( final Aspect aspect )
   {
     super( aspect );
   }
@@ -27,7 +27,7 @@ public abstract class EntityProcessingSystem extends EntitySystem
   protected abstract void process( Entity e );
 
   @Override
-  protected final void processEntities( ImmutableBag<Entity> entities )
+  protected final void processEntities( final ImmutableBag<Entity> entities )
   {
     for( int i = 0, s = entities.size(); s > i; i++ )
     {

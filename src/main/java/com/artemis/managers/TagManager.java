@@ -23,23 +23,23 @@ public class TagManager extends Manager
     tagsByEntity = new HashMap<Entity, String>();
   }
 
-  public void register( String tag, Entity e )
+  public void register( final String tag, final Entity e )
   {
     entitiesByTag.put( tag, e );
     tagsByEntity.put( e, tag );
   }
 
-  public void unregister( String tag )
+  public void unregister( final String tag )
   {
     tagsByEntity.remove( entitiesByTag.remove( tag ) );
   }
 
-  public boolean isRegistered( String tag )
+  public boolean isRegistered( final String tag )
   {
     return entitiesByTag.containsKey( tag );
   }
 
-  public Entity getEntity( String tag )
+  public Entity getEntity( final String tag )
   {
     return entitiesByTag.get( tag );
   }
@@ -50,9 +50,9 @@ public class TagManager extends Manager
   }
 
   @Override
-  public void deleted( Entity e )
+  public void deleted( final Entity e )
   {
-    String removedTag = tagsByEntity.remove( e );
+    final String removedTag = tagsByEntity.remove( e );
     if( removedTag != null )
     {
       entitiesByTag.remove( removedTag );

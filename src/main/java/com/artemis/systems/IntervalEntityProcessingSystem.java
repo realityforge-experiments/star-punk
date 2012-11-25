@@ -14,7 +14,7 @@ import com.artemis.utils.ImmutableBag;
 public abstract class IntervalEntityProcessingSystem extends IntervalEntitySystem
 {
 
-  public IntervalEntityProcessingSystem( Aspect aspect, float interval )
+  public IntervalEntityProcessingSystem( final Aspect aspect, final float interval )
   {
     super( aspect, interval );
   }
@@ -27,7 +27,7 @@ public abstract class IntervalEntityProcessingSystem extends IntervalEntitySyste
   protected abstract void process( Entity e );
 
   @Override
-  protected void processEntities( ImmutableBag<Entity> entities )
+  protected void processEntities( final ImmutableBag<Entity> entities )
   {
     for( int i = 0, s = entities.size(); s > i; i++ )
     {

@@ -9,7 +9,7 @@ public class ComponentType
   private final int index;
   private final Class<? extends Component> type;
 
-  private ComponentType( Class<? extends Component> type )
+  private ComponentType( final Class<? extends Component> type )
   {
     index = INDEX++;
     this.type = type;
@@ -28,7 +28,7 @@ public class ComponentType
 
   private static final HashMap<Class<? extends Component>, ComponentType> componentTypes = new HashMap<Class<? extends Component>, ComponentType>();
 
-  public static ComponentType getTypeFor( Class<? extends Component> c )
+  public static ComponentType getTypeFor( final Class<? extends Component> c )
   {
     ComponentType type = componentTypes.get( c );
 
@@ -41,7 +41,7 @@ public class ComponentType
     return type;
   }
 
-  public static int getIndexFor( Class<? extends Component> c )
+  public static int getIndexFor( final Class<? extends Component> c )
   {
     return getTypeFor( c ).getIndex();
   }

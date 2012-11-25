@@ -35,19 +35,19 @@ public abstract class DelayedEntityProcessingSystem extends EntitySystem
   private boolean running;
   private float acc;
 
-  public DelayedEntityProcessingSystem( Aspect aspect )
+  public DelayedEntityProcessingSystem( final Aspect aspect )
   {
     super( aspect );
   }
 
   @Override
-  protected final void processEntities( ImmutableBag<Entity> entities )
+  protected final void processEntities( final ImmutableBag<Entity> entities )
   {
     for( int i = 0, s = entities.size(); s > i; i++ )
     {
-      Entity entity = entities.get( i );
+      final Entity entity = entities.get( i );
       processDelta( entity, acc );
-      float remaining = getRemainingDelay( entity );
+      final float remaining = getRemainingDelay( entity );
       if( remaining <= 0 )
       {
         processExpired( entity );
@@ -61,9 +61,9 @@ public abstract class DelayedEntityProcessingSystem extends EntitySystem
   }
 
   @Override
-  protected void inserted( Entity e )
+  protected void inserted( final Entity e )
   {
-    float delay = getRemainingDelay( e );
+    final float delay = getRemainingDelay( e );
     if( delay > 0 )
     {
       offerDelay( delay );
@@ -111,7 +111,7 @@ public abstract class DelayedEntityProcessingSystem extends EntitySystem
    *
    * @param delay time delay until processing starts.
    */
-  public void restart( float delay )
+  public void restart( final float delay )
   {
     this.delay = delay;
     this.acc = 0;
@@ -130,7 +130,7 @@ public abstract class DelayedEntityProcessingSystem extends EntitySystem
    * offered delay is shorter than the time remaining, the system will
    * restart itself to run at the offered delay.
    */
-  public void offerDelay( float delay )
+  public void offerDelay( final float delay )
   {
     if( !running || delay < getRemainingTimeUntilProcessing() )
     {

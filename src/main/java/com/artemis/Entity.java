@@ -22,7 +22,7 @@ public final class Entity
   private final EntityManager entityManager;
   private final ComponentManager componentManager;
 
-  protected Entity( World world, int id )
+  Entity( final World world, final int id )
   {
     this.world = world;
     this.id = id;
@@ -47,13 +47,13 @@ public final class Entity
   }
 
   /** Returns a BitSet instance containing bits of the components the entity possesses. */
-  protected BitSet getComponentBits()
+  BitSet getComponentBits()
   {
     return componentBits;
   }
 
   /** Returns a BitSet instance containing bits of the components the entity possesses. */
-  protected BitSet getSystemBits()
+  BitSet getSystemBits()
   {
     return systemBits;
   }
@@ -62,7 +62,7 @@ public final class Entity
    * Make entity ready for re-use.
    * Will generate a new uuid for the entity.
    */
-  protected void reset()
+  void reset()
   {
     systemBits.clear();
     componentBits.clear();
@@ -81,7 +81,7 @@ public final class Entity
    * @param component to add to this entity
    * @return this entity for chaining.
    */
-  public Entity addComponent( Component component )
+  public Entity addComponent( final Component component )
   {
     addComponent( component, ComponentType.getTypeFor( component.getClass() ) );
     return this;
@@ -95,7 +95,7 @@ public final class Entity
    * @param type of the component
    * @return this entity for chaining.
    */
-  public Entity addComponent( Component component, ComponentType type )
+  public Entity addComponent( final Component component, final ComponentType type )
   {
     componentManager.addComponent( this, type, component );
     return this;
@@ -107,7 +107,7 @@ public final class Entity
    * @param component to remove from this entity.
    * @return this entity for chaining.
    */
-  public Entity removeComponent( Component component )
+  public Entity removeComponent( final Component component )
   {
     removeComponent( component.getClass() );
     return this;
@@ -119,7 +119,7 @@ public final class Entity
    * @param component to remove from this entity.
    * @return this entity for chaining.
    */
-  public Entity removeComponent( ComponentType type )
+  public Entity removeComponent( final ComponentType type )
   {
     componentManager.removeComponent( this, type );
     return this;
@@ -130,7 +130,7 @@ public final class Entity
    *
    * @return this entity for chaining.
    */
-  public Entity removeComponent( Class<? extends Component> type )
+  public Entity removeComponent( final Class<? extends Component> type )
   {
     removeComponent( ComponentType.getTypeFor( type ) );
     return this;
@@ -168,7 +168,7 @@ public final class Entity
    * @param type in order to retrieve the component fast you must provide a
    * ComponentType instance for the expected component.
    */
-  public Component getComponent( ComponentType type )
+  public Component getComponent( final ComponentType type )
   {
     return componentManager.getComponent( this, type );
   }
@@ -182,7 +182,7 @@ public final class Entity
    * @param type the expected return component type.
    * @return component that matches, or null if none is found.
    */
-  public <T extends Component> T getComponent( Class<T> type )
+  public <T extends Component> T getComponent( final Class<T> type )
   {
     return type.cast( getComponent( ComponentType.getTypeFor( type ) ) );
   }
@@ -194,7 +194,7 @@ public final class Entity
    * @param fillBag the bag to put the components into.
    * @return the fillBag with the components in.
    */
-  public Bag<Component> getComponents( Bag<Component> fillBag )
+  public Bag<Component> getComponents( final Bag<Component> fillBag )
   {
     return componentManager.getComponentsFor( this, fillBag );
   }

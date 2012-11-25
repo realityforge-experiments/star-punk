@@ -11,26 +11,26 @@ import com.artemis.utils.Bag;
  */
 public class ComponentMapper<A extends Component>
 {
-  private final Class<A> classType;
-  private final Bag<Component> components;
+  private final Class<A> _type;
+  private final Bag<Component> _components;
 
-  private ComponentMapper( Class<A> type, World world )
+  private ComponentMapper( final Class<A> type, final World world )
   {
-    components = world.getComponentManager().getComponentsByType( ComponentType.getTypeFor( type ) );
-    this.classType = type;
+    _components = world.getComponentManager().getComponentsByType( ComponentType.getTypeFor( type ) );
+    _type = type;
   }
 
   /**
    * Fast but unsafe retrieval of a component for this entity.
-   * No bounding checks, so this could throw an ArrayIndexOutOfBoundsExeption,
+   * No bounding checks, so this could throw an ArrayIndexOutOfBoundsException,
    * however in most scenarios you already know the entity possesses this component.
    *
    * @param e the entity that should possess the component
    * @return the instance of the component
    */
-  public A get( Entity e )
+  public A get( final Entity e )
   {
-    return classType.cast( components.get( e.getId() ) );
+    return _type.cast( _components.get( e.getId() ) );
   }
 
   /**
@@ -40,11 +40,11 @@ public class ComponentMapper<A extends Component>
    * @param e the entity that should possess the component
    * @return the instance of the component
    */
-  public A getSafe( Entity e )
+  public A getSafe( final Entity e )
   {
-    if( components.isIndexWithinBounds( e.getId() ) )
+    if( _components.isIndexWithinBounds( e.getId() ) )
     {
-      return classType.cast( components.get( e.getId() ) );
+      return _type.cast( _components.get( e.getId() ) );
     }
     return null;
   }
@@ -55,7 +55,7 @@ public class ComponentMapper<A extends Component>
    * @param e the entity to check
    * @return true if the entity has this component type, false if it doesn't.
    */
-  public boolean has( Entity e )
+  public boolean has( final Entity e )
   {
     return getSafe( e ) != null;
   }
@@ -67,7 +67,7 @@ public class ComponentMapper<A extends Component>
    * @param world the world that this component mapper should use.
    * @return a new mapper.
    */
-  public static <T extends Component> ComponentMapper<T> getFor( Class<T> type, World world )
+  public static <T extends Component> ComponentMapper<T> getFor( final Class<T> type, final World world )
   {
     return new ComponentMapper<T>( type, world );
   }

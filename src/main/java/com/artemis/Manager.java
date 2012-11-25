@@ -11,7 +11,7 @@ public abstract class Manager implements EntityObserver
 
   protected abstract void initialize();
 
-  protected void setWorld( World world )
+  protected void setWorld( final World world )
   {
     this.world = world;
   }
@@ -22,27 +22,27 @@ public abstract class Manager implements EntityObserver
   }
 
   @Override
-  public void added( Entity e )
+  public void added( final Entity e )
   {
   }
 
   @Override
-  public void changed( Entity e )
+  public void changed( final Entity e )
   {
   }
 
   @Override
-  public void deleted( Entity e )
+  public void deleted( final Entity e )
   {
   }
 
   @Override
-  public void disabled( Entity e )
+  public void disabled( final Entity e )
   {
   }
 
   @Override
-  public void enabled( Entity e )
+  public void enabled( final Entity e )
   {
   }
 }

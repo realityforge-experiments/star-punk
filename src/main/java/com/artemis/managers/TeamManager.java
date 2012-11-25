@@ -32,12 +32,12 @@ public class TeamManager extends Manager
   {
   }
 
-  public String getTeam( String player )
+  public String getTeam( final String player )
   {
     return teamByPlayer.get( player );
   }
 
-  public void setTeam( String player, String team )
+  public void setTeam( final String player, final String team )
   {
     removeFromTeam( player );
 
@@ -52,17 +52,17 @@ public class TeamManager extends Manager
     players.add( player );
   }
 
-  public ImmutableBag<String> getPlayers( String team )
+  public ImmutableBag<String> getPlayers( final String team )
   {
     return playersByTeam.get( team );
   }
 
-  public void removeFromTeam( String player )
+  public void removeFromTeam( final String player )
   {
-    String team = teamByPlayer.remove( player );
+    final String team = teamByPlayer.remove( player );
     if( team != null )
     {
-      Bag<String> players = playersByTeam.get( team );
+      final Bag<String> players = playersByTeam.get( team );
       if( players != null )
       {
         players.remove( player );

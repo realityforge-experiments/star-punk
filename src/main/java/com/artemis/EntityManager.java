@@ -30,13 +30,13 @@ public class EntityManager
 
   protected Entity createEntityInstance()
   {
-    Entity e = new Entity( world, identifierPool.checkOut() );
+    final Entity e = new Entity( world, identifierPool.checkOut() );
     created++;
     return e;
   }
 
   @Override
-  public void added( Entity e )
+  public void added( final Entity e )
   {
     active++;
     added++;
@@ -44,19 +44,19 @@ public class EntityManager
   }
 
   @Override
-  public void enabled( Entity e )
+  public void enabled( final Entity e )
   {
     disabled.clear( e.getId() );
   }
 
   @Override
-  public void disabled( Entity e )
+  public void disabled( final Entity e )
   {
     disabled.set( e.getId() );
   }
 
   @Override
-  public void deleted( Entity e )
+  public void deleted( final Entity e )
   {
     entities.set( e.getId(), null );
 
@@ -74,7 +74,7 @@ public class EntityManager
    *
    * @return true if active, false if not.
    */
-  public boolean isActive( int entityId )
+  public boolean isActive( final int entityId )
   {
     return entities.get( entityId ) != null;
   }
@@ -84,7 +84,7 @@ public class EntityManager
    *
    * @return true if the entity is enabled, false if it is disabled.
    */
-  public boolean isEnabled( int entityId )
+  public boolean isEnabled( final int entityId )
   {
     return !disabled.get( entityId );
   }
@@ -94,7 +94,7 @@ public class EntityManager
    *
    * @return the entity
    */
-  protected Entity getEntity( int entityId )
+  protected Entity getEntity( final int entityId )
   {
     return entities.get( entityId );
   }
@@ -163,7 +163,7 @@ public class EntityManager
       return nextAvailableId++;
     }
 
-    public void checkIn( int id )
+    public void checkIn( final int id )
     {
       ids.add( id );
     }

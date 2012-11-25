@@ -21,7 +21,7 @@ public abstract class VoidEntitySystem extends EntitySystem
   }
 
   @Override
-  protected final void processEntities( ImmutableBag<Entity> entities )
+  protected final void processEntities( final ImmutableBag<Entity> entities )
   {
     processSystem();
   }

@@ -98,7 +98,7 @@ public class World
    *
    * @param manager to be added
    */
-  public <T extends Manager> T setManager( T manager )
+  public <T extends Manager> T setManager( final T manager )
   {
     managers.put( manager.getClass(), manager );
     managersBag.add( manager );
@@ -112,7 +112,7 @@ public class World
    * @param managerType class type of the manager
    * @return the manager
    */
-  public <T extends Manager> T getManager( Class<T> managerType )
+  public <T extends Manager> T getManager( final Class<T> managerType )
   {
     return managerType.cast( managers.get( managerType ) );
   }
@@ -143,7 +143,7 @@ public class World
    *
    * @param delta time since last game loop.
    */
-  public void setDelta( float delta )
+  public void setDelta( final float delta )
   {
     this.delta = delta;
   }
@@ -153,7 +153,7 @@ public class World
    *
    * @param e entity
    */
-  public void addEntity( Entity e )
+  public void addEntity( final Entity e )
   {
     added.add( e );
   }
@@ -165,7 +165,7 @@ public class World
    *
    * @param e entity
    */
-  public void changedEntity( Entity e )
+  public void changedEntity( final Entity e )
   {
     changed.add( e );
   }
@@ -175,7 +175,7 @@ public class World
    *
    * @param e entity
    */
-  public void deleteEntity( Entity e )
+  public void deleteEntity( final Entity e )
   {
     if( !deleted.contains( e ) )
     {
@@ -187,7 +187,7 @@ public class World
    * (Re)enable the entity in the world, after it having being disabled.
    * Won't do anything unless it was already disabled.
    */
-  public void enable( Entity e )
+  public void enable( final Entity e )
   {
     enable.add( e );
   }
@@ -196,7 +196,7 @@ public class World
    * Disable the entity from being processed. Won't delete it, it will
    * continue to exist but won't get processed.
    */
-  public void disable( Entity e )
+  public void disable( final Entity e )
   {
     disable.add( e );
   }
@@ -211,7 +211,7 @@ public class World
   }
 
   /** Get a entity having the specified id. */
-  public Entity getEntity( int entityId )
+  public Entity getEntity( final int entityId )
   {
     return em.getEntity( entityId );
   }
@@ -232,7 +232,7 @@ public class World
    * @param system the system to add.
    * @return the added system.
    */
-  public <T extends EntitySystem> T setSystem( T system )
+  public <T extends EntitySystem> T setSystem( final T system )
   {
     return setSystem( system, false );
   }
@@ -241,10 +241,10 @@ public class World
    * Will add a system to this world.
    *
    * @param system the system to add.
-   * @param passive wether or not this system will be processed by World.process()
+   * @param passive whether or not this system will be processed by World.process()
    * @return the added system.
    */
-  public <T extends EntitySystem> T setSystem( T system, boolean passive )
+  public <T extends EntitySystem> T setSystem( final T system, final boolean passive )
   {
     system.setWorld( this );
     system.setPassive( passive );
@@ -260,13 +260,13 @@ public class World
    *
    * @param system to be deleted from world.
    */
-  public void deleteSystem( EntitySystem system )
+  public void deleteSystem( final EntitySystem system )
   {
     systems.remove( system.getClass() );
     systemsBag.remove( system );
   }
 
-  private void notifySystems( Performer performer, Entity e )
+  private void notifySystems( final Performer performer, final Entity e )
   {
     for( int i = 0, s = systemsBag.size(); s > i; i++ )
     {
@@ -274,7 +274,7 @@ public class World
     }
   }
 
-  private void notifyManagers( Performer performer, Entity e )
+  private void notifyManagers( final Performer performer, final Entity e )
   {
     for( int a = 0; managersBag.size() > a; a++ )
     {
@@ -288,19 +288,19 @@ public class World
    * @param type type of system.
    * @return instance of the system in this world.
    */
-  public <T extends EntitySystem> T getSystem( Class<T> type )
+  public <T extends EntitySystem> T getSystem( final Class<T> type )
   {
     return type.cast( systems.get( type ) );
   }
 
   /** Performs an action on each entity. */
-  private void check( Bag<Entity> entities, Performer performer )
+  private void check( final Bag<Entity> entities, final Performer performer )
   {
     if( !entities.isEmpty() )
     {
       for( int i = 0; entities.size() > i; i++ )
       {
-        Entity e = entities.get( i );
+        final Entity e = entities.get( i );
         notifyManagers( performer, e );
         notifySystems( performer, e );
       }
@@ -314,7 +314,7 @@ public class World
     check( added, new Performer()
     {
       @Override
-      public void perform( EntityObserver observer, Entity e )
+      public void perform( final EntityObserver observer, final Entity e )
       {
         observer.added( e );
       }
@@ -323,7 +323,7 @@ public class World
     check( changed, new Performer()
     {
       @Override
-      public void perform( EntityObserver observer, Entity e )
+      public void perform( final EntityObserver observer, final Entity e )
       {
         observer.changed( e );
       }
@@ -332,7 +332,7 @@ public class World
     check( disable, new Performer()
     {
       @Override
-      public void perform( EntityObserver observer, Entity e )
+      public void perform( final EntityObserver observer, final Entity e )
       {
         observer.disabled( e );
       }
@@ -341,7 +341,7 @@ public class World
     check( enable, new Performer()
     {
       @Override
-      public void perform( EntityObserver observer, Entity e )
+      public void perform( final EntityObserver observer, final Entity e )
       {
         observer.enabled( e );
       }
@@ -350,7 +350,7 @@ public class World
     check( deleted, new Performer()
     {
       @Override
-      public void perform( EntityObserver observer, Entity e )
+      public void perform( final EntityObserver observer, final Entity e )
       {
         observer.deleted( e );
       }
@@ -360,7 +360,7 @@ public class World
 
     for( int i = 0; systemsBag.size() > i; i++ )
     {
-      EntitySystem system = systemsBag.get( i );
+      final EntitySystem system = systemsBag.get( i );
       if( system.isActive() )
       {
         system.process();
@@ -374,7 +374,7 @@ public class World
    * @param type of component to get mapper for.
    * @return mapper for specified component type.
    */
-  public <T extends Component> ComponentMapper<T> getMapper( Class<T> type )
+  public <T extends Component> ComponentMapper<T> getMapper( final Class<T> type )
   {
     return ComponentMapper.getFor( type, this );
   }
@@ -390,18 +390,18 @@ public class World
   private static class ComponentMapperInitHelper
   {
     @SuppressWarnings( "unchecked" )
-    public static void config( Object target, World world )
+    public static void config( final Object target, final World world )
     {
       try
       {
-        Class<?> clazz = target.getClass();
-        for( Field field : clazz.getDeclaredFields() )
+        final Class<?> clazz = target.getClass();
+        for( final Field field : clazz.getDeclaredFields() )
         {
-          Mapper annotation = field.getAnnotation( Mapper.class );
+          final Mapper annotation = field.getAnnotation( Mapper.class );
           if( annotation != null && Mapper.class.isAssignableFrom( Mapper.class ) )
           {
-            ParameterizedType genericType = (ParameterizedType) field.getGenericType();
-            Class componentType = (Class) genericType.getActualTypeArguments()[ 0 ];
+            final ParameterizedType genericType = (ParameterizedType) field.getGenericType();
+            final Class componentType = (Class) genericType.getActualTypeArguments()[ 0 ];
 
             field.setAccessible( true );
             field.set( target, world.getMapper( componentType ) );

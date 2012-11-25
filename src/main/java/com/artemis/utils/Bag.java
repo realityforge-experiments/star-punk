@@ -22,7 +22,7 @@ public class Bag<E> implements ImmutableBag<E>
    * @param capacity the initial capacity of Bag
    */
   @SuppressWarnings( "unchecked" )
-  public Bag( int capacity )
+  public Bag( final int capacity )
   {
     data = (E[]) new Object[ capacity ];
   }
@@ -34,9 +34,9 @@ public class Bag<E> implements ImmutableBag<E>
    * @param index the index of element to be removed
    * @return element that was removed from the Bag
    */
-  public E remove( int index )
+  public E remove( final int index )
   {
-    E e = data[ index ]; // make copy of element to remove so it can be returned
+    final E e = data[ index ]; // make copy of element to remove so it can be returned
     data[ index ] = data[ --size ]; // overwrite item to remove with last element
     data[ size ] = null; // null last element, so gc can do its work
     return e;
@@ -51,7 +51,7 @@ public class Bag<E> implements ImmutableBag<E>
   {
     if( size > 0 )
     {
-      E e = data[ --size ];
+      final E e = data[ --size ];
       data[ size ] = null;
       return e;
     }
@@ -67,11 +67,11 @@ public class Bag<E> implements ImmutableBag<E>
    * @param e element to be removed from this list, if present
    * @return <tt>true</tt> if this list contained the specified element
    */
-  public boolean remove( E e )
+  public boolean remove( final E e )
   {
     for( int i = 0; i < size; i++ )
     {
-      E e2 = data[ i ];
+      final E e2 = data[ i ];
 
       if( e == e2 )
       {
@@ -85,7 +85,7 @@ public class Bag<E> implements ImmutableBag<E>
   }
 
   /** Check if bag contains this element. */
-  public boolean contains( E e )
+  public boolean contains( final E e )
   {
     for( int i = 0; size > i; i++ )
     {
@@ -104,7 +104,7 @@ public class Bag<E> implements ImmutableBag<E>
    * @param bag Bag containing elements to be removed from this Bag
    * @return {@code true} if this Bag changed as a result of the call
    */
-  public boolean removeAll( ImmutableBag<E> bag )
+  public boolean removeAll( final ImmutableBag<E> bag )
   {
     boolean modified = false;
 
@@ -113,7 +113,7 @@ public class Bag<E> implements ImmutableBag<E>
       final E e1 = bag.get( i );
       for( int j = 0; j < size; j++ )
       {
-        E e2 = data[ j ];
+        final E e2 = data[ j ];
 
         if( e1 == e2 )
         {
@@ -133,7 +133,7 @@ public class Bag<E> implements ImmutableBag<E>
    * @param index index of the element to return
    * @return the element at the specified position in bag
    */
-  public E get( int index )
+  public E get( final int index )
   {
     return data[ index ];
   }
@@ -159,7 +159,7 @@ public class Bag<E> implements ImmutableBag<E>
   }
 
   /** Checks if the internal storage supports this index. */
-  public boolean isIndexWithinBounds( int index )
+  public boolean isIndexWithinBounds( final int index )
   {
     return index < getCapacity();
   }
@@ -180,7 +180,7 @@ public class Bag<E> implements ImmutableBag<E>
    *
    * @param e element to be added to this list
    */
-  public void add( E e )
+  public void add( final E e )
   {
     // is size greater than capacity increase capacity
     if( size == data.length )
@@ -197,7 +197,7 @@ public class Bag<E> implements ImmutableBag<E>
    * @param index position of element
    * @param e the element
    */
-  public void set( int index, E e )
+  public void set( final int index, final E e )
   {
     if( index >= data.length )
     {
@@ -209,19 +209,19 @@ public class Bag<E> implements ImmutableBag<E>
 
   private void grow()
   {
-    int newCapacity = ( data.length * 3 ) / 2 + 1;
+    final int newCapacity = ( data.length * 3 ) / 2 + 1;
     grow( newCapacity );
   }
 
   @SuppressWarnings( "unchecked" )
-  private void grow( int newCapacity )
+  private void grow( final int newCapacity )
   {
-    E[] oldData = data;
+    final E[] oldData = data;
     data = (E[]) new Object[ newCapacity ];
     System.arraycopy( oldData, 0, data, 0, oldData.length );
   }
 
-  public void ensureCapacity( int index )
+  public void ensureCapacity( final int index )
   {
     if( index >= data.length )
     {
@@ -245,7 +245,7 @@ public class Bag<E> implements ImmutableBag<E>
   }
 
   /** Add all items into this bag. */
-  public void addAll( ImmutableBag<E> items )
+  public void addAll( final ImmutableBag<E> items )
   {
     for( int i = 0; items.size() > i; i++ )
     {

@@ -34,7 +34,7 @@ public abstract class EntitySystem
    *
    * @param aspect to match against entities
    */
-  public EntitySystem( Aspect aspect )
+  public EntitySystem( final Aspect aspect )
   {
     actives = new Bag<Entity>();
     allSet = aspect.getAllSet();
@@ -110,10 +110,10 @@ public abstract class EntitySystem
       return;
     }
 
-    boolean contains = e.getSystemBits().get( systemIndex );
+    final boolean contains = e.getSystemBits().get( systemIndex );
     boolean interested = true; // possibly interested, let's try to prove it wrong.
 
-    BitSet componentBits = e.getComponentBits();
+    final BitSet componentBits = e.getComponentBits();
 
     // Check if the entity possesses ALL of the components defined in the aspect.
     if( !allSet.isEmpty() )
@@ -150,14 +150,14 @@ public abstract class EntitySystem
     }
   }
 
-  private void removeFromSystem( Entity e )
+  private void removeFromSystem( final Entity e )
   {
     actives.remove( e );
     e.getSystemBits().clear( systemIndex );
     removed( e );
   }
 
-  private void insertToSystem( Entity e )
+  private void insertToSystem( final Entity e )
   {
     actives.add( e );
     e.getSystemBits().set( systemIndex );
@@ -165,19 +165,19 @@ public abstract class EntitySystem
   }
 
   @Override
-  public final void added( Entity e )
+  public final void added( final Entity e )
   {
     check( e );
   }
 
   @Override
-  public final void changed( Entity e )
+  public final void changed( final Entity e )
   {
     check( e );
   }
 
   @Override
-  public final void deleted( Entity e )
+  public final void deleted( final Entity e )
   {
     if( e.getSystemBits().get( systemIndex ) )
     {
@@ -186,7 +186,7 @@ public abstract class EntitySystem
   }
 
   @Override
-  public final void disabled( Entity e )
+  public final void disabled( final Entity e )
   {
     if( e.getSystemBits().get( systemIndex ) )
     {
@@ -195,12 +195,12 @@ public abstract class EntitySystem
   }
 
   @Override
-  public final void enabled( Entity e )
+  public final void enabled( final Entity e )
   {
     check( e );
   }
 
-  protected final void setWorld( World world )
+  protected final void setWorld( final World world )
   {
     this.world = world;
   }
@@ -215,7 +215,7 @@ public abstract class EntitySystem
     return !isPassive();
   }
 
-  protected void setPassive( boolean passive )
+  protected void setPassive( final boolean passive )
   {
     this.passive = passive;
   }
@@ -234,7 +234,7 @@ public abstract class EntitySystem
     private static int INDEX = 0;
     private static final HashMap<Class<? extends EntitySystem>, Integer> indices = new HashMap<Class<? extends EntitySystem>, Integer>();
 
-    private static int getIndexFor( Class<? extends EntitySystem> es )
+    private static int getIndexFor( final Class<? extends EntitySystem> es )
     {
       Integer index = indices.get( es );
       if( index == null )
