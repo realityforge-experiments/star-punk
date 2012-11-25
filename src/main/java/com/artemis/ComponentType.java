@@ -31,7 +31,7 @@ public final class ComponentType
   public static ComponentType getTypeFor( final Class<?> c )
   {
     ComponentType type = _typeMap.get( c );
-    if( type == null )
+    if( null == type )
     {
       type = new ComponentType( c );
       _typeMap.put( c, type );
