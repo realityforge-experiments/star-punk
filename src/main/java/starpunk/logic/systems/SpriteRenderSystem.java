@@ -87,8 +87,8 @@ public final class SpriteRenderSystem
 
       if( null != spriteRegion )
       {
-        float posX = position.getX() - ( spriteRegion.getRegionWidth() / 2 * sprite.getScaleX() );
-        float posY = position.getY() - ( spriteRegion.getRegionHeight() / 2 * sprite.getScaleY() );
+        final float posX = position.getX() - ( spriteRegion.getRegionWidth() / 2 * sprite.getScaleX() );
+        final float posY = position.getY() - ( spriteRegion.getRegionHeight() / 2 * sprite.getScaleY() );
         _batch.draw( spriteRegion,
                      posX,
                      posY,
