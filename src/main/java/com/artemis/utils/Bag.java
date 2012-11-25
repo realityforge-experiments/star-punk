@@ -8,7 +8,7 @@ package com.artemis.utils;
 public class Bag<E> implements ImmutableBag<E>
 {
   private E[] data;
-  private int size = 0;
+  private int size;
 
   /** Constructs an empty Bag with an initial capacity of 64. */
   public Bag()

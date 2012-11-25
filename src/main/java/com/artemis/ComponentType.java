@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class ComponentType
 {
-  private static int INDEX = 0;
+  private static int INDEX;
 
   private final int index;
   private final Class<? extends Component> type;

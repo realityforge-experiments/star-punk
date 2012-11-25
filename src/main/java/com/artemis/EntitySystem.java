@@ -231,7 +231,7 @@ public abstract class EntitySystem
    */
   private static class SystemIndexManager
   {
-    private static int INDEX = 0;
+    private static int INDEX;
     private static final HashMap<Class<? extends EntitySystem>, Integer> indices = new HashMap<Class<? extends EntitySystem>, Integer>();
 
     private static int getIndexFor( final Class<? extends EntitySystem> es )
