@@ -49,6 +49,7 @@ public final class ComponentType<T>
     return getTypeFor( type, DEFAULT_CLASSIFIER );
   }
 
+  @SuppressWarnings( "unchecked" )
   @Nonnull
   public static <T> ComponentType<T> getTypeFor( @Nonnull final Class<T> type, @Nonnull final String classifier )
   {
