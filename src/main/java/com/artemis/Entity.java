@@ -116,7 +116,7 @@ public final class Entity
   /**
    * Faster removal of components from a entity.
    *
-   * @param component to remove from this entity.
+   * @param type to remove from this entity.
    * @return this entity for chaining.
    */
   public Entity removeComponent( final ComponentType type )
