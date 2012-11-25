@@ -2,7 +2,6 @@ package com.artemis;
 
 public interface EntityObserver
 {
-
   void added( Entity e );
 
   void changed( Entity e );
