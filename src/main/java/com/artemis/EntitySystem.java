@@ -21,8 +21,6 @@ public abstract class EntitySystem
 
   private final Bag<Entity> actives;
 
-  private Aspect aspect;
-
   private final BitSet allSet;
   private final BitSet exclusionSet;
   private final BitSet oneSet;
@@ -39,7 +37,6 @@ public abstract class EntitySystem
   public EntitySystem( Aspect aspect )
   {
     actives = new Bag<Entity>();
-    this.aspect = aspect;
     allSet = aspect.getAllSet();
     exclusionSet = aspect.getExclusionSet();
     oneSet = aspect.getOneSet();
