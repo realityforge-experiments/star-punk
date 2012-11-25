@@ -87,7 +87,7 @@ public final class Entity
    */
   public <T> void addComponent( @Nonnull final ComponentType<T> type, @Nonnull final T component )
   {
-    _world.getComponentManager().addComponent( this, type, component );
+    getWorld().getComponentManager().addComponent( this, type, component );
   }
 
   /**
@@ -107,7 +107,7 @@ public final class Entity
    */
   public <T> void removeComponent( @Nonnull final ComponentType<T> type )
   {
-    _world.getComponentManager().removeComponent( this, type );
+    getWorld().getComponentManager().removeComponent( this, type );
   }
 
   /**
@@ -118,7 +118,7 @@ public final class Entity
    */
   public boolean isActive()
   {
-    return _world.getEntityManager().isActive( _id );
+    return getWorld().getEntityManager().isActive( _id );
   }
 
   /**
@@ -130,7 +130,7 @@ public final class Entity
    */
   public boolean isEnabled()
   {
-    return _world.getEntityManager().isEnabled( _id );
+    return getWorld().getEntityManager().isEnabled( _id );
   }
 
   /**
@@ -145,7 +145,7 @@ public final class Entity
   @Nullable
   public <T> T getComponent( @Nonnull final ComponentType<T> type )
   {
-    return _world.getComponentManager().getComponent( this, type );
+    return getWorld().getComponentManager().getComponent( this, type );
   }
 
   /**
@@ -173,7 +173,7 @@ public final class Entity
   @Nonnull
   public Bag<Object> getComponents( @Nonnull final Bag<Object> fillBag )
   {
-    return _world.getComponentManager().getComponentsFor( this, fillBag );
+    return getWorld().getComponentManager().getComponentsFor( this, fillBag );
   }
 
   /**
@@ -184,19 +184,19 @@ public final class Entity
    */
   public void addToWorld()
   {
-    _world.addEntity( this );
+    getWorld().addEntity( this );
   }
 
   /** This entity has changed, a component added or deleted. */
   public void changedInWorld()
   {
-    _world.changedEntity( this );
+    getWorld().changedEntity( this );
   }
 
   /** Delete this entity from the world. */
   public void deleteFromWorld()
   {
-    _world.deleteEntity( this );
+    getWorld().deleteEntity( this );
   }
 
   /**
@@ -205,7 +205,7 @@ public final class Entity
    */
   public void enable()
   {
-    _world.enable( this );
+    getWorld().enable( this );
   }
 
   /**
@@ -214,7 +214,7 @@ public final class Entity
    */
   public void disable()
   {
-    _world.disable( this );
+    getWorld().disable( this );
   }
 
   /**
