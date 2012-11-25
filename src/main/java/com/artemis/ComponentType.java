@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 
 public final class ComponentType<T>
 {
-  private static final String DEFAULT_CLASSIFIER = "DEFAULT";
+  public static final String DEFAULT_CLASSIFIER = "DEFAULT";
   private static final HashMap<Class<?>, Map<String, ComponentType>> _typeMap =
     new HashMap<Class<?>, Map<String, ComponentType>>();
 
@@ -21,6 +21,16 @@ public final class ComponentType<T>
     _index = c_maxIndex++;
     _type = type;
     _classifier = classifier;
+  }
+
+  public String getClassifier()
+  {
+    return _classifier;
+  }
+
+  public Class<T> getType()
+  {
+    return _type;
   }
 
   public int getIndex()
