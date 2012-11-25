@@ -3,8 +3,9 @@ package starpunk.logic;
 import com.artemis.Entity;
 import com.artemis.World;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import starpunk.Constants;
 import starpunk.logic.components.Acceleration;
-import starpunk.logic.components.Position;
 import starpunk.logic.components.Sprite;
 import starpunk.logic.components.Velocity;
 
@@ -19,10 +20,10 @@ public final class EntityFactory
   {
     final Entity e = world.createEntity();
 
-    final Position position = new Position();
-    position.setX( MathUtils.random( -width / 2, width / 2 ) );
-    position.setY( MathUtils.random( -height / 2, height / 2 ) );
-    e.addComponent( position );
+    final Vector2 position = new Vector2();
+    position.set( MathUtils.random( -width / 2, width / 2 ),
+                  MathUtils.random( -height / 2, height / 2 ) );
+    e.addComponent( Constants.POSITION, position );
 
     final Velocity velocity = new Velocity();
     velocity.setVectorX( 0.05f * MathUtils.random( -width / 2, width / 2 ) );
@@ -51,10 +52,9 @@ public final class EntityFactory
   {
     final Entity e = world.createEntity();
 
-    final Position position = new Position();
-    position.setX( x );
-    position.setY( y );
-    e.addComponent( position );
+    final Vector2 position = new Vector2();
+    position.set( x, y );
+    e.addComponent( Constants.POSITION, position );
 
     e.addComponent( new Velocity() );
     e.addComponent( new Acceleration() );

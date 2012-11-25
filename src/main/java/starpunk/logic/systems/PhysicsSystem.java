@@ -12,19 +12,19 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import starpunk.Constants;
 import starpunk.logic.components.Acceleration;
-import starpunk.logic.components.Position;
 import starpunk.logic.components.Velocity;
 
 public class PhysicsSystem
   extends EntityProcessingSystem
 {
+  @Mapper( classifier = Constants.POSITION_CLASSIFIER )
+  private ComponentMapper<Vector2> _positionMapper;
   @Mapper
-  ComponentMapper<Position> _positionMapper;
+  private ComponentMapper<Velocity> _velocityMapper;
   @Mapper
-  ComponentMapper<Velocity> _velocityMapper;
-  @Mapper
-  ComponentMapper<Acceleration> _accelerationMapper;
+  private ComponentMapper<Acceleration> _accelerationMapper;
 
   private World _world;
 

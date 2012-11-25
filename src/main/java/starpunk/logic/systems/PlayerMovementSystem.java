@@ -14,7 +14,7 @@ public final class PlayerMovementSystem
   private static final float MAX_ACCELERATION = 10;
 
   @Mapper
-  ComponentMapper<Acceleration> _accelerationMapper;
+  private ComponentMapper<Acceleration> _accelerationMapper;
   private Entity _player;
 
   @Override

@@ -10,21 +10,22 @@ import com.artemis.utils.ImmutableBag;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import starpunk.Constants;
 import starpunk.StarPunkGame;
-import starpunk.logic.components.Position;
 import starpunk.logic.components.Sprite;
 
 public final class SpriteRenderSystem
   extends EntitySystem
 {
+  @Mapper( classifier = Constants.POSITION_CLASSIFIER )
+  private ComponentMapper<Vector2> _positionMapper;
   @Mapper
-  ComponentMapper<Position> _positionMapper;
-  @Mapper
-  ComponentMapper<Sprite> _spriteMapper;
+  private ComponentMapper<Sprite> _spriteMapper;
   private SpriteBatch _batch;
   private final OrthographicCamera _camera;
   private Bag<AtlasRegion> _regionsByEntity;
@@ -33,7 +34,7 @@ public final class SpriteRenderSystem
 
   public SpriteRenderSystem( final StarPunkGame game, final OrthographicCamera camera )
   {
-    super( Aspect.getAspectForAll( Position.class, Sprite.class ) );
+    super( Aspect.getAspectForAll( Sprite.class ).all( Constants.POSITION ) );
     _game = game;
     _camera = camera;
   }
@@ -79,7 +80,7 @@ public final class SpriteRenderSystem
   {
     if( _positionMapper.has( e ) )
     {
-      final Position position = _positionMapper.getSafe( e );
+      final Vector2 position = _positionMapper.getSafe( e );
       final Sprite sprite = _spriteMapper.get( e );
 
       final AtlasRegion spriteRegion = _regionsByEntity.get( e.getId() );
@@ -87,8 +88,8 @@ public final class SpriteRenderSystem
 
       if( null != spriteRegion )
       {
-        final float posX = position.getX() - ( spriteRegion.getRegionWidth() / 2 * sprite.getScaleX() );
-        final float posY = position.getY() - ( spriteRegion.getRegionHeight() / 2 * sprite.getScaleY() );
+        final float posX = position.x - ( spriteRegion.getRegionWidth() / 2 * sprite.getScaleX() );
+        final float posY = position.y - ( spriteRegion.getRegionHeight() / 2 * sprite.getScaleY() );
         _batch.draw( spriteRegion,
                      posX,
                      posY,

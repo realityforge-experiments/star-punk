@@ -374,7 +374,7 @@ public class World
    * @param type of component to get mapper for.
    * @return mapper for specified component type.
    */
-  public <T> ComponentMapper<T> getMapper( final Class<T> type )
+  public <T> ComponentMapper<T> getMapper( final ComponentType<T> type )
   {
     return ComponentMapper.getFor( type, this );
   }
@@ -398,13 +398,17 @@ public class World
         for( final Field field : clazz.getDeclaredFields() )
         {
           final Mapper annotation = field.getAnnotation( Mapper.class );
-          if( annotation != null && Mapper.class.isAssignableFrom( Mapper.class ) )
+          if( null != annotation )
           {
+
             final ParameterizedType genericType = (ParameterizedType) field.getGenericType();
-            final Class componentType = (Class) genericType.getActualTypeArguments()[ 0 ];
+            final Class fieldType = (Class) genericType.getActualTypeArguments()[ 0 ];
 
             field.setAccessible( true );
-            field.set( target, world.getMapper( componentType ) );
+            final String classifier = annotation.classifier();
+            final ComponentType<Object> componentType = ComponentType.getTypeFor( fieldType, classifier );
+            final ComponentMapper<Object> mapper = world.getMapper( componentType );
+            field.set( target, mapper );
           }
         }
       }
