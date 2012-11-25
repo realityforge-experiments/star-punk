@@ -3,7 +3,8 @@ package com.artemis;
 import com.artemis.utils.Bag;
 import java.util.BitSet;
 
-public class ComponentManager extends Manager
+public class ComponentManager
+  extends Manager
 {
   private final Bag<Bag<Object>> componentsByType;
   private final Bag<Entity> deleted;
