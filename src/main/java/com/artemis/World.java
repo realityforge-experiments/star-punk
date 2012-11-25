@@ -361,7 +361,7 @@ public class World
     for( int i = 0; systemsBag.size() > i; i++ )
     {
       EntitySystem system = systemsBag.get( i );
-      if( !system.isPassive() )
+      if( system.isActive() )
       {
         system.process();
       }

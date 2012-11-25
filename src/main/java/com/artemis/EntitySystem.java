@@ -210,6 +210,11 @@ public abstract class EntitySystem
     return passive;
   }
 
+  protected boolean isActive()
+  {
+    return !isPassive();
+  }
+
   protected void setPassive( boolean passive )
   {
     this.passive = passive;
