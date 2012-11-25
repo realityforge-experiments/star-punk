@@ -27,7 +27,7 @@ public abstract class EntityProcessingSystem
   protected abstract void process( Entity e );
 
   @Override
-  protected final void processEntities( final ImmutableBag<Entity> entities )
+  protected void processEntities( final ImmutableBag<Entity> entities )
   {
     for( int i = 0, s = entities.size(); s > i; i++ )
     {
