@@ -3,6 +3,8 @@ package com.artemis;
 import com.artemis.utils.Bag;
 import java.util.BitSet;
 import java.util.UUID;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * The entity class. Cannot be instantiated outside the framework, you must
@@ -12,25 +14,16 @@ import java.util.UUID;
  */
 public final class Entity
 {
-  private UUID uuid;
-
-  private final int id;
-  private final BitSet componentBits;
-  private final BitSet systemBits;
-
-  private final World world;
-  private final EntityManager entityManager;
-  private final ComponentManager componentManager;
+  private final int _id;
+  private final World _world;
+  private final BitSet _componentBits = new BitSet();
+  private final BitSet _systemBits = new BitSet();
+  private UUID _uuid;
 
   Entity( final World world, final int id )
   {
-    this.world = world;
-    this.id = id;
-    this.entityManager = world.getEntityManager();
-    this.componentManager = world.getComponentManager();
-    systemBits = new BitSet();
-    componentBits = new BitSet();
-
+    _world = world;
+    _id = id;
     reset();
   }
 
@@ -43,19 +36,19 @@ public final class Entity
    */
   public int getId()
   {
-    return id;
+    return _id;
   }
 
   /** Returns a BitSet instance containing bits of the components the entity possesses. */
   BitSet getComponentBits()
   {
-    return componentBits;
+    return _componentBits;
   }
 
   /** Returns a BitSet instance containing bits of the components the entity possesses. */
   BitSet getSystemBits()
   {
-    return systemBits;
+    return _systemBits;
   }
 
   /**
@@ -64,76 +57,57 @@ public final class Entity
    */
   void reset()
   {
-    systemBits.clear();
-    componentBits.clear();
-    uuid = UUID.randomUUID();
+    _systemBits.clear();
+    _componentBits.clear();
+    _uuid = UUID.randomUUID();
   }
 
   @Override
   public String toString()
   {
-    return "Entity[" + id + "]";
+    return "Entity[" + _id + "]";
   }
 
   /**
    * Add a component to this entity.
    *
    * @param component to add to this entity
-   * @return this entity for chaining.
    */
-  public Entity addComponent( final Object component )
+  public void addComponent( @Nonnull final Object component )
   {
-    addComponent( component, ComponentType.getTypeFor( component.getClass() ) );
-    return this;
+    addComponent( ComponentType.getTypeFor( component.getClass() ), component );
   }
 
   /**
-   * Faster adding of components into the entity. Not neccessery to use this, but
+   * Faster adding of components into the entity. Not necessary to use this, but
    * in some cases you might need the extra performance.
    *
-   * @param component the component to add
    * @param type of the component
-   * @return this entity for chaining.
+   * @param component the component to add
    */
-  public Entity addComponent( final Object component, final ComponentType type )
+  public void addComponent( @Nonnull final ComponentType type, @Nonnull final Object component )
   {
-    componentManager.addComponent( this, type, component );
-    return this;
+    _world.getComponentManager().addComponent( this, type, component );
   }
 
   /**
    * Removes the component from this entity.
    *
    * @param component to remove from this entity.
-   * @return this entity for chaining.
    */
-  public Entity removeComponent( final Object component )
+  public void removeComponent( @Nonnull final Object component )
   {
-    removeComponent( component.getClass() );
-    return this;
+    removeComponent( ComponentType.getTypeFor( component.getClass() ) );
   }
 
   /**
    * Faster removal of components from a entity.
    *
    * @param type to remove from this entity.
-   * @return this entity for chaining.
    */
-  public Entity removeComponent( final ComponentType type )
+  public void removeComponent( @Nonnull final ComponentType type )
   {
-    componentManager.removeComponent( this, type );
-    return this;
-  }
-
-  /**
-   * Remove component by its type.
-   *
-   * @return this entity for chaining.
-   */
-  public Entity removeComponent( final Class<?> type )
-  {
-    removeComponent( ComponentType.getTypeFor( type ) );
-    return this;
+    _world.getComponentManager().removeComponent( this, type );
   }
 
   /**
@@ -144,7 +118,7 @@ public final class Entity
    */
   public boolean isActive()
   {
-    return entityManager.isActive( id );
+    return _world.getEntityManager().isActive( _id );
   }
 
   /**
@@ -156,7 +130,7 @@ public final class Entity
    */
   public boolean isEnabled()
   {
-    return entityManager.isEnabled( id );
+    return _world.getEntityManager().isEnabled( _id );
   }
 
   /**
@@ -168,9 +142,10 @@ public final class Entity
    * @param type in order to retrieve the component fast you must provide a
    * ComponentType instance for the expected component.
    */
-  public Object getComponent( final ComponentType type )
+  @Nullable
+  public Object getComponent( @Nonnull final ComponentType type )
   {
-    return componentManager.getComponent( this, type );
+    return _world.getComponentManager().getComponent( this, type );
   }
 
   /**
@@ -182,7 +157,8 @@ public final class Entity
    * @param type the expected return component type.
    * @return component that matches, or null if none is found.
    */
-  public <T> T getComponent( final Class<T> type )
+  @Nullable
+  public <T> T getComponent( @Nonnull final Class<T> type )
   {
     return type.cast( getComponent( ComponentType.getTypeFor( type ) ) );
   }
@@ -194,9 +170,10 @@ public final class Entity
    * @param fillBag the bag to put the components into.
    * @return the fillBag with the components in.
    */
-  public Bag<Object> getComponents( final Bag<Object> fillBag )
+  @Nonnull
+  public Bag<Object> getComponents( @Nonnull final Bag<Object> fillBag )
   {
-    return componentManager.getComponentsFor( this, fillBag );
+    return _world.getComponentManager().getComponentsFor( this, fillBag );
   }
 
   /**
@@ -207,19 +184,19 @@ public final class Entity
    */
   public void addToWorld()
   {
-    world.addEntity( this );
+    _world.addEntity( this );
   }
 
   /** This entity has changed, a component added or deleted. */
   public void changedInWorld()
   {
-    world.changedEntity( this );
+    _world.changedEntity( this );
   }
 
   /** Delete this entity from the world. */
   public void deleteFromWorld()
   {
-    world.deleteEntity( this );
+    _world.deleteEntity( this );
   }
 
   /**
@@ -228,7 +205,7 @@ public final class Entity
    */
   public void enable()
   {
-    world.enable( this );
+    _world.enable( this );
   }
 
   /**
@@ -237,7 +214,7 @@ public final class Entity
    */
   public void disable()
   {
-    world.disable( this );
+    _world.disable( this );
   }
 
   /**
@@ -246,9 +223,10 @@ public final class Entity
    *
    * @return uuid instance for this entity.
    */
+  @Nonnull
   public UUID getUuid()
   {
-    return uuid;
+    return _uuid;
   }
 
   /**
@@ -256,8 +234,9 @@ public final class Entity
    *
    * @return world of entity.
    */
+  @Nonnull
   public World getWorld()
   {
-    return world;
+    return _world;
   }
 }
