@@ -38,7 +38,7 @@ public final class SpriteRenderSystem
     _camera = camera;
   }
 
-  protected final StarPunkGame getGame()
+  private StarPunkGame getGame()
   {
     return _game;
   }
@@ -75,7 +75,7 @@ public final class SpriteRenderSystem
     }
   }
 
-  protected void process( final Entity e )
+  private void process( final Entity e )
   {
     if( _positionMapper.has( e ) )
     {
