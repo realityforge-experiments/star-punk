@@ -3,16 +3,17 @@ package com.artemis;
 import com.artemis.utils.Bag;
 import java.util.BitSet;
 
+@SuppressWarnings( "unchecked" )
 public class ComponentManager
   extends Manager
 {
-  private final Bag<Bag<Object>> componentsByType;
-  private final Bag<Entity> deleted;
+  private final Bag<Bag> _componentsByType;
+  private final Bag<Entity> _deleted;
 
   public ComponentManager()
   {
-    componentsByType = new Bag<Bag<Object>>();
-    deleted = new Bag<Entity>();
+    _componentsByType = new Bag<Bag>();
+    _deleted = new Bag<Entity>();
   }
 
   private void removeComponentsOfEntity( final Entity e )
@@ -20,20 +21,20 @@ public class ComponentManager
     final BitSet componentBits = e.getComponentBits();
     for( int i = componentBits.nextSetBit( 0 ); i >= 0; i = componentBits.nextSetBit( i + 1 ) )
     {
-      componentsByType.get( i ).set( e.getId(), null );
+      _componentsByType.get( i ).set( e.getId(), null );
     }
     componentBits.clear();
   }
 
-  protected void addComponent( final Entity e, final ComponentType type, final Object component )
+  protected <T> void addComponent( final Entity e, final ComponentType<T> type, final T component )
   {
-    componentsByType.ensureCapacity( type.getIndex() );
+    _componentsByType.ensureCapacity( type.getIndex() );
 
-    Bag<Object> components = componentsByType.get( type.getIndex() );
+    Bag<Object> components = _componentsByType.get( type.getIndex() );
     if( components == null )
     {
       components = new Bag<Object>();
-      componentsByType.set( type.getIndex(), components );
+      _componentsByType.set( type.getIndex(), components );
     }
 
     components.set( e.getId(), component );
@@ -41,30 +42,30 @@ public class ComponentManager
     e.getComponentBits().set( type.getIndex() );
   }
 
-  protected void removeComponent( final Entity e, final ComponentType type )
+  protected <T> void removeComponent( final Entity e, final ComponentType<T> type )
   {
     if( e.getComponentBits().get( type.getIndex() ) )
     {
-      componentsByType.get( type.getIndex() ).set( e.getId(), null );
+      _componentsByType.get( type.getIndex() ).set( e.getId(), null );
       e.getComponentBits().clear( type.getIndex() );
     }
   }
 
-  protected Bag<Object> getComponentsByType( final ComponentType type )
+  protected <T> Bag<T> getComponentsByType( final ComponentType<T> type )
   {
-    Bag<Object> components = componentsByType.get( type.getIndex() );
-    if( components == null )
+    Bag<T> components = (Bag<T>) _componentsByType.get( type.getIndex() );
+    if( null == components )
     {
-      components = new Bag<Object>();
-      componentsByType.set( type.getIndex(), components );
+      components = new Bag<T>();
+      _componentsByType.set( type.getIndex(), components );
     }
     return components;
   }
 
-  protected Object getComponent( final Entity e, final ComponentType type )
+  protected <T> T getComponent( final Entity e, final ComponentType<T> type )
   {
-    final Bag<Object> components = componentsByType.get( type.getIndex() );
-    if( components != null )
+    final Bag<T> components = _componentsByType.get( type.getIndex() );
+    if( null != components )
     {
       return components.get( e.getId() );
     }
@@ -77,7 +78,7 @@ public class ComponentManager
 
     for( int i = componentBits.nextSetBit( 0 ); i >= 0; i = componentBits.nextSetBit( i + 1 ) )
     {
-      fillBag.add( componentsByType.get( i ).get( e.getId() ) );
+      fillBag.add( _componentsByType.get( i ).get( e.getId() ) );
     }
 
     return fillBag;
@@ -86,18 +87,18 @@ public class ComponentManager
   @Override
   public void deleted( final Entity e )
   {
-    deleted.add( e );
+    _deleted.add( e );
   }
 
   protected void clean()
   {
-    if( deleted.size() > 0 )
+    if( _deleted.size() > 0 )
     {
-      for( int i = 0; deleted.size() > i; i++ )
+      for( int i = 0; _deleted.size() > i; i++ )
       {
-        removeComponentsOfEntity( deleted.get( i ) );
+        removeComponentsOfEntity( _deleted.get( i ) );
       }
-      deleted.clear();
+      _deleted.clear();
     }
   }
 }

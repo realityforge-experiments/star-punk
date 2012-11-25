@@ -6,15 +6,15 @@ import com.artemis.utils.Bag;
  * High performance component retrieval from entities. Use this wherever you
  * need to retrieve components from entities often and fast.
  *
- * @param <A> the class type of the component
+ * @param <T> the class type of the component
  * @author Arni Arent
  */
-public class ComponentMapper<A>
+public class ComponentMapper<T>
 {
-  private final Class<A> _type;
-  private final Bag<Object> _components;
+  private final Class<T> _type;
+  private final Bag<T> _components;
 
-  private ComponentMapper( final Class<A> type, final World world )
+  private ComponentMapper( final Class<T> type, final World world )
   {
     _components = world.getComponentManager().getComponentsByType( ComponentType.getTypeFor( type ) );
     _type = type;
@@ -28,7 +28,7 @@ public class ComponentMapper<A>
    * @param e the entity that should possess the component
    * @return the instance of the component
    */
-  public A get( final Entity e )
+  public T get( final Entity e )
   {
     return _type.cast( _components.get( e.getId() ) );
   }
@@ -40,7 +40,7 @@ public class ComponentMapper<A>
    * @param e the entity that should possess the component
    * @return the instance of the component
    */
-  public A getSafe( final Entity e )
+  public T getSafe( final Entity e )
   {
     if( _components.isIndexWithinBounds( e.getId() ) )
     {

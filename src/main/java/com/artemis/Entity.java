@@ -73,9 +73,9 @@ public final class Entity
    *
    * @param component to add to this entity
    */
-  public void addComponent( @Nonnull final Object component )
+  public <T> void addComponent( @Nonnull final T component )
   {
-    addComponent( ComponentType.getTypeFor( component.getClass() ), component );
+    addComponent( ComponentType.getTypeFor( (Class<T>) component.getClass() ), component );
   }
 
   /**
@@ -85,7 +85,7 @@ public final class Entity
    * @param type of the component
    * @param component the component to add
    */
-  public void addComponent( @Nonnull final ComponentType type, @Nonnull final Object component )
+  public <T> void addComponent( @Nonnull final ComponentType<T> type, @Nonnull final T component )
   {
     _world.getComponentManager().addComponent( this, type, component );
   }
@@ -105,7 +105,7 @@ public final class Entity
    *
    * @param type to remove from this entity.
    */
-  public void removeComponent( @Nonnull final ComponentType type )
+  public <T> void removeComponent( @Nonnull final ComponentType<T> type )
   {
     _world.getComponentManager().removeComponent( this, type );
   }
@@ -143,7 +143,7 @@ public final class Entity
    * ComponentType instance for the expected component.
    */
   @Nullable
-  public Object getComponent( @Nonnull final ComponentType type )
+  public <T> T getComponent( @Nonnull final ComponentType<T> type )
   {
     return _world.getComponentManager().getComponent( this, type );
   }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nonnull;
 
-public final class ComponentType
+public final class ComponentType<T>
 {
   private static final String DEFAULT_CLASSIFIER = "DEFAULT";
   private static final HashMap<Class<?>, Map<String, ComponentType>> _typeMap =
@@ -13,10 +13,10 @@ public final class ComponentType
   private static int c_maxIndex;
 
   private final int _index;
-  private final Class<?> _type;
+  private final Class<T> _type;
   private final String _classifier;
 
-  private ComponentType( final Class<?> type, final String classifier )
+  private ComponentType( final Class<T> type, final String classifier )
   {
     _index = c_maxIndex++;
     _type = type;
@@ -34,13 +34,13 @@ public final class ComponentType
     return "ComponentType[" + _type.getSimpleName() + "/" + _classifier + "] (" + _index + ")";
   }
 
-  public static ComponentType getTypeFor( final Class<?> type )
+  public static <T> ComponentType<T> getTypeFor( final Class<T> type )
   {
     return getTypeFor( type, DEFAULT_CLASSIFIER );
   }
 
   @Nonnull
-  public static ComponentType getTypeFor( @Nonnull final Class<?> type, @Nonnull final String classifier )
+  public static <T> ComponentType<T> getTypeFor( @Nonnull final Class<T> type, @Nonnull final String classifier )
   {
     Map<String, ComponentType> componentTypeMap = _typeMap.get( type );
     if( null == componentTypeMap )
@@ -49,10 +49,10 @@ public final class ComponentType
       _typeMap.put( type, componentTypeMap );
     }
 
-    ComponentType componentType = componentTypeMap.get( classifier );
+    ComponentType<T> componentType = (ComponentType<T>) componentTypeMap.get( classifier );
     if( null == componentType )
     {
-      componentType = new ComponentType( type, classifier );
+      componentType = new ComponentType<T>( type, classifier );
       componentTypeMap.put( classifier, componentType );
     }
     return componentType;
