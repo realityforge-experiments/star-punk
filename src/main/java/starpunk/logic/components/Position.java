@@ -1,9 +1,6 @@
 package starpunk.logic.components;
 
-import com.artemis.Component;
-
 public final class Position
-  extends Component
 {
   private float _x;
   private float _y;

@@ -5,12 +5,12 @@ import java.util.BitSet;
 
 public class ComponentManager extends Manager
 {
-  private final Bag<Bag<Component>> componentsByType;
+  private final Bag<Bag<Object>> componentsByType;
   private final Bag<Entity> deleted;
 
   public ComponentManager()
   {
-    componentsByType = new Bag<Bag<Component>>();
+    componentsByType = new Bag<Bag<Object>>();
     deleted = new Bag<Entity>();
   }
 
@@ -29,14 +29,14 @@ public class ComponentManager extends Manager
     componentBits.clear();
   }
 
-  protected void addComponent( final Entity e, final ComponentType type, final Component component )
+  protected void addComponent( final Entity e, final ComponentType type, final Object component )
   {
     componentsByType.ensureCapacity( type.getIndex() );
 
-    Bag<Component> components = componentsByType.get( type.getIndex() );
+    Bag<Object> components = componentsByType.get( type.getIndex() );
     if( components == null )
     {
-      components = new Bag<Component>();
+      components = new Bag<Object>();
       componentsByType.set( type.getIndex(), components );
     }
 
@@ -54,20 +54,20 @@ public class ComponentManager extends Manager
     }
   }
 
-  protected Bag<Component> getComponentsByType( final ComponentType type )
+  protected Bag<Object> getComponentsByType( final ComponentType type )
   {
-    Bag<Component> components = componentsByType.get( type.getIndex() );
+    Bag<Object> components = componentsByType.get( type.getIndex() );
     if( components == null )
     {
-      components = new Bag<Component>();
+      components = new Bag<Object>();
       componentsByType.set( type.getIndex(), components );
     }
     return components;
   }
 
-  protected Component getComponent( final Entity e, final ComponentType type )
+  protected Object getComponent( final Entity e, final ComponentType type )
   {
-    final Bag<Component> components = componentsByType.get( type.getIndex() );
+    final Bag<Object> components = componentsByType.get( type.getIndex() );
     if( components != null )
     {
       return components.get( e.getId() );
@@ -75,7 +75,7 @@ public class ComponentManager extends Manager
     return null;
   }
 
-  public Bag<Component> getComponentsFor( final Entity e, final Bag<Component> fillBag )
+  public Bag<Object> getComponentsFor( final Entity e, final Bag<Object> fillBag )
   {
     final BitSet componentBits = e.getComponentBits();
 

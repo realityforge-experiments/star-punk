@@ -1,9 +1,6 @@
 package starpunk.logic.components;
 
-import com.artemis.Component;
-
 public final class Sprite
-  extends Component
 {
   private String _name;
   private int _frame = -1;

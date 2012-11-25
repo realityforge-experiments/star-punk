@@ -1,9 +1,6 @@
 package starpunk.logic.components;
 
-import com.artemis.Component;
-
 public final class Acceleration
-  extends Component
 {
   private float _vectorX;
   private float _vectorY;

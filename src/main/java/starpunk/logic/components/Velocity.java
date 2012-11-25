@@ -1,8 +1,6 @@
 package starpunk.logic.components;
 
-import com.artemis.Component;
-
-public class Velocity extends Component
+public class Velocity
 {
   private float _vectorX;
   private float _vectorY;

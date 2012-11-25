@@ -9,10 +9,10 @@ import com.artemis.utils.Bag;
  * @param <A> the class type of the component
  * @author Arni Arent
  */
-public class ComponentMapper<A extends Component>
+public class ComponentMapper<A extends Object>
 {
   private final Class<A> _type;
-  private final Bag<Component> _components;
+  private final Bag<Object> _components;
 
   private ComponentMapper( final Class<A> type, final World world )
   {
@@ -67,7 +67,7 @@ public class ComponentMapper<A extends Component>
    * @param world the world that this component mapper should use.
    * @return a new mapper.
    */
-  public static <T extends Component> ComponentMapper<T> getFor( final Class<T> type, final World world )
+  public static <T extends Object> ComponentMapper<T> getFor( final Class<T> type, final World world )
   {
     return new ComponentMapper<T>( type, world );
   }

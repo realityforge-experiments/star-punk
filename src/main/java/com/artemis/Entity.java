@@ -81,7 +81,7 @@ public final class Entity
    * @param component to add to this entity
    * @return this entity for chaining.
    */
-  public Entity addComponent( final Component component )
+  public Entity addComponent( final Object component )
   {
     addComponent( component, ComponentType.getTypeFor( component.getClass() ) );
     return this;
@@ -95,7 +95,7 @@ public final class Entity
    * @param type of the component
    * @return this entity for chaining.
    */
-  public Entity addComponent( final Component component, final ComponentType type )
+  public Entity addComponent( final Object component, final ComponentType type )
   {
     componentManager.addComponent( this, type, component );
     return this;
@@ -107,7 +107,7 @@ public final class Entity
    * @param component to remove from this entity.
    * @return this entity for chaining.
    */
-  public Entity removeComponent( final Component component )
+  public Entity removeComponent( final Object component )
   {
     removeComponent( component.getClass() );
     return this;
@@ -130,7 +130,7 @@ public final class Entity
    *
    * @return this entity for chaining.
    */
-  public Entity removeComponent( final Class<? extends Component> type )
+  public Entity removeComponent( final Class<? extends Object> type )
   {
     removeComponent( ComponentType.getTypeFor( type ) );
     return this;
@@ -168,7 +168,7 @@ public final class Entity
    * @param type in order to retrieve the component fast you must provide a
    * ComponentType instance for the expected component.
    */
-  public Component getComponent( final ComponentType type )
+  public Object getComponent( final ComponentType type )
   {
     return componentManager.getComponent( this, type );
   }
@@ -182,7 +182,7 @@ public final class Entity
    * @param type the expected return component type.
    * @return component that matches, or null if none is found.
    */
-  public <T extends Component> T getComponent( final Class<T> type )
+  public <T extends Object> T getComponent( final Class<T> type )
   {
     return type.cast( getComponent( ComponentType.getTypeFor( type ) ) );
   }
@@ -194,7 +194,7 @@ public final class Entity
    * @param fillBag the bag to put the components into.
    * @return the fillBag with the components in.
    */
-  public Bag<Component> getComponents( final Bag<Component> fillBag )
+  public Bag<Object> getComponents( final Bag<Object> fillBag )
   {
     return componentManager.getComponentsFor( this, fillBag );
   }
