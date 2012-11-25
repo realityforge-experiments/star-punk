@@ -2,42 +2,40 @@ package com.artemis;
 
 import java.util.HashMap;
 
-public class ComponentType
+public final class ComponentType
 {
-  private static int INDEX;
+  private static final HashMap<Class<?>, ComponentType> _typeMap = new HashMap<Class<?>, ComponentType>();
 
-  private final int index;
-  private final Class<?> type;
+  private static int c_maxIndex;
+
+  private final int _index;
+  private final Class<?> _type;
 
   private ComponentType( final Class<?> type )
   {
-    index = INDEX++;
-    this.type = type;
+    _index = c_maxIndex++;
+    _type = type;
   }
 
   public int getIndex()
   {
-    return index;
+    return _index;
   }
 
   @Override
   public String toString()
   {
-    return "ComponentType[" + type.getSimpleName() + "] (" + index + ")";
+    return "ComponentType[" + _type.getSimpleName() + "] (" + _index + ")";
   }
-
-  private static final HashMap<Class<?>, ComponentType> componentTypes = new HashMap<Class<?>, ComponentType>();
 
   public static ComponentType getTypeFor( final Class<?> c )
   {
-    ComponentType type = componentTypes.get( c );
-
+    ComponentType type = _typeMap.get( c );
     if( type == null )
     {
       type = new ComponentType( c );
-      componentTypes.put( c, type );
+      _typeMap.put( c, type );
     }
-
     return type;
   }
 

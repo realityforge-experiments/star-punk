@@ -2,7 +2,6 @@ package com.artemis;
 
 import com.artemis.utils.Bag;
 import com.artemis.utils.ImmutableBag;
-import java.util.BitSet;
 import java.util.HashMap;
 
 /**
@@ -21,13 +20,9 @@ public abstract class EntitySystem
 
   private final Bag<Entity> actives;
 
-  private final BitSet allSet;
-  private final BitSet exclusionSet;
-  private final BitSet oneSet;
+  private final Aspect _aspect;
 
   private boolean passive;
-
-  private final boolean dummy;
 
   /**
    * Creates an entity system that uses the specified aspect as a matcher against entities.
@@ -37,11 +32,8 @@ public abstract class EntitySystem
   public EntitySystem( final Aspect aspect )
   {
     actives = new Bag<Entity>();
-    allSet = aspect.getAllSet();
-    exclusionSet = aspect.getExclusionSet();
-    oneSet = aspect.getOneSet();
+    _aspect = aspect;
     systemIndex = SystemIndexManager.getIndexFor( this.getClass() );
-    dummy = allSet.isEmpty() && oneSet.isEmpty(); // This system can't possibly be interested in any entity, so it must be "dummy"
   }
 
   /** Called before processing of entities begins. */
@@ -105,40 +97,8 @@ public abstract class EntitySystem
    */
   protected final void check( final Entity e )
   {
-    if( dummy )
-    {
-      return;
-    }
-
     final boolean contains = e.getSystemBits().get( systemIndex );
-    boolean interested = true; // possibly interested, let's try to prove it wrong.
-
-    final BitSet componentBits = e.getComponentBits();
-
-    // Check if the entity possesses ALL of the components defined in the aspect.
-    if( !allSet.isEmpty() )
-    {
-      for( int i = allSet.nextSetBit( 0 ); i >= 0; i = allSet.nextSetBit( i + 1 ) )
-      {
-        if( !componentBits.get( i ) )
-        {
-          interested = false;
-          break;
-        }
-      }
-    }
-
-    // Check if the entity possesses ANY of the exclusion components, if it does then the system is not interested.
-    if( !exclusionSet.isEmpty() && interested )
-    {
-      interested = !exclusionSet.intersects( componentBits );
-    }
-
-    // Check if the entity possesses ANY of the components in the oneSet. If so, the system is interested.
-    if( !oneSet.isEmpty() )
-    {
-      interested = oneSet.intersects( componentBits );
-    }
+    final boolean interested = _aspect.isInterested( e.getComponentBits() );
 
     if( interested && !contains )
     {

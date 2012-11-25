@@ -24,33 +24,41 @@ import java.util.BitSet;
  * @author Arni Arent
  */
 @SuppressWarnings( "unchecked" )
-public class Aspect
+public final class Aspect
 {
+  private final BitSet _allSet = new BitSet();
+  private final BitSet _exclusionSet = new BitSet();
+  private final BitSet _oneSet = new BitSet();
 
-  private final BitSet allSet;
-  private final BitSet exclusionSet;
-  private final BitSet oneSet;
-
-  private Aspect()
+  public boolean isInterested( final BitSet componentBits )
   {
-    this.allSet = new BitSet();
-    this.exclusionSet = new BitSet();
-    this.oneSet = new BitSet();
-  }
+    // possibly interested, let's try to prove it wrong.
+    boolean interested = true;
+    // Check if the entity possesses ALL of the components defined in the aspect.
+    if( !_allSet.isEmpty() )
+    {
+      for( int i = _allSet.nextSetBit( 0 ); i >= 0; i = _allSet.nextSetBit( i + 1 ) )
+      {
+        if( !componentBits.get( i ) )
+        {
+          interested = false;
+          break;
+        }
+      }
+    }
 
-  protected BitSet getAllSet()
-  {
-    return allSet;
-  }
+    // Check if the entity possesses ANY of the exclusion components, if it does then the system is not interested.
+    if( !_exclusionSet.isEmpty() && interested )
+    {
+      interested = !_exclusionSet.intersects( componentBits );
+    }
 
-  protected BitSet getExclusionSet()
-  {
-    return exclusionSet;
-  }
-
-  protected BitSet getOneSet()
-  {
-    return oneSet;
+    // Check if the entity possesses ANY of the components in the oneSet. If so, the system is interested.
+    if( !_oneSet.isEmpty() )
+    {
+      interested = _oneSet.intersects( componentBits );
+    }
+    return interested;
   }
 
   /**
@@ -63,7 +71,7 @@ public class Aspect
   {
     for( final Class t : types )
     {
-      allSet.set( ComponentType.getIndexFor( t ) );
+      _allSet.set( ComponentType.getIndexFor( t ) );
     }
 
     return this;
@@ -80,7 +88,7 @@ public class Aspect
   {
     for( final Class t : types )
     {
-      exclusionSet.set( ComponentType.getIndexFor( t ) );
+      _exclusionSet.set( ComponentType.getIndexFor( t ) );
     }
     return this;
   }
@@ -95,7 +103,7 @@ public class Aspect
   {
     for( final Class t : types )
     {
-      oneSet.set( ComponentType.getIndexFor( t ) );
+      _oneSet.set( ComponentType.getIndexFor( t ) );
     }
     return this;
   }
@@ -108,9 +116,7 @@ public class Aspect
    */
   public static Aspect getAspectForAll( final Class... types )
   {
-    final Aspect aspect = new Aspect();
-    aspect.all( types );
-    return aspect;
+    return new Aspect().all( types );
   }
 
   /**
@@ -121,9 +127,7 @@ public class Aspect
    */
   public static Aspect getAspectForOne( final Class... types )
   {
-    final Aspect aspect = new Aspect();
-    aspect.one( types );
-    return aspect;
+    return new Aspect().one( types );
   }
 
   /**
