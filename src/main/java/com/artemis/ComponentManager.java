@@ -5,8 +5,8 @@ import java.util.BitSet;
 
 public class ComponentManager extends Manager
 {
-  private Bag<Bag<Component>> componentsByType;
-  private Bag<Entity> deleted;
+  private final Bag<Bag<Component>> componentsByType;
+  private final Bag<Entity> deleted;
 
   public ComponentManager()
   {

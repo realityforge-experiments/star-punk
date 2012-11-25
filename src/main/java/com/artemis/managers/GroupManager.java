@@ -17,8 +17,8 @@ import java.util.Map;
  */
 public class GroupManager extends Manager
 {
-  private Map<String, Bag<Entity>> entitiesByGroup;
-  private Map<Entity, Bag<String>> groupsByEntity;
+  private final Map<String, Bag<Entity>> entitiesByGroup;
+  private final Map<Entity, Bag<String>> groupsByEntity;
 
   public GroupManager()
   {

@@ -19,21 +19,21 @@ import java.util.Map;
  */
 public class World
 {
-  private EntityManager em;
-  private ComponentManager cm;
+  private final EntityManager em;
+  private final ComponentManager cm;
 
   public float delta;
-  private Bag<Entity> added;
-  private Bag<Entity> changed;
-  private Bag<Entity> deleted;
-  private Bag<Entity> enable;
-  private Bag<Entity> disable;
+  private final Bag<Entity> added;
+  private final Bag<Entity> changed;
+  private final Bag<Entity> deleted;
+  private final Bag<Entity> enable;
+  private final Bag<Entity> disable;
 
-  private Map<Class<? extends Manager>, Manager> managers;
-  private Bag<Manager> managersBag;
+  private final Map<Class<? extends Manager>, Manager> managers;
+  private final Bag<Manager> managersBag;
 
-  private Map<Class<?>, EntitySystem> systems;
-  private Bag<EntitySystem> systemsBag;
+  private final Map<Class<?>, EntitySystem> systems;
+  private final Bag<EntitySystem> systemsBag;
 
   public World()
   {
@@ -122,7 +122,7 @@ public class World
    *
    * @param manager to delete.
    */
-  public void deleteManager( Manager manager )
+  public void deleteManager( final Manager manager )
   {
     managers.remove( manager );
     managersBag.remove( manager );

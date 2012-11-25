@@ -16,8 +16,8 @@ import java.util.Map;
  */
 public class PlayerManager extends Manager
 {
-  private Map<Entity, String> playerByEntity;
-  private Map<String, Bag<Entity>> entitiesByPlayer;
+  private final Map<Entity, String> playerByEntity;
+  private final Map<String, Bag<Entity>> entitiesByPlayer;
 
   public PlayerManager()
   {

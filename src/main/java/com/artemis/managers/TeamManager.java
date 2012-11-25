@@ -18,8 +18,8 @@ import java.util.Map;
  */
 public class TeamManager extends Manager
 {
-  private Map<String, Bag<String>> playersByTeam;
-  private Map<String, String> teamByPlayer;
+  private final Map<String, Bag<String>> playersByTeam;
+  private final Map<String, String> teamByPlayer;
 
   public TeamManager()
   {

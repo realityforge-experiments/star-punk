@@ -3,17 +3,18 @@ package com.artemis;
 import com.artemis.utils.Bag;
 import java.util.BitSet;
 
-public class EntityManager extends Manager
+public class EntityManager
+  extends Manager
 {
-  private Bag<Entity> entities;
-  private BitSet disabled;
+  private final Bag<Entity> entities;
+  private final BitSet disabled;
 
   private int active;
   private long added;
   private long created;
   private long deleted;
 
-  private IdentifierPool identifierPool;
+  private final IdentifierPool identifierPool;
 
   public EntityManager()
   {
@@ -145,7 +146,7 @@ public class EntityManager extends Manager
     */
   private class IdentifierPool
   {
-    private Bag<Integer> ids;
+    private final Bag<Integer> ids;
     private int nextAvailableId;
 
     public IdentifierPool()

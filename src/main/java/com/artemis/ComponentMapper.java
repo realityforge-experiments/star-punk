@@ -11,14 +11,12 @@ import com.artemis.utils.Bag;
  */
 public class ComponentMapper<A extends Component>
 {
-  private ComponentType type;
-  private Class<A> classType;
-  private Bag<Component> components;
+  private final Class<A> classType;
+  private final Bag<Component> components;
 
   private ComponentMapper( Class<A> type, World world )
   {
-    this.type = ComponentType.getTypeFor( type );
-    components = world.getComponentManager().getComponentsByType( this.type );
+    components = world.getComponentManager().getComponentsByType( ComponentType.getTypeFor( type ) );
     this.classType = type;
   }
 

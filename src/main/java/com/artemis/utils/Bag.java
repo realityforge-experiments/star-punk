@@ -110,8 +110,7 @@ public class Bag<E> implements ImmutableBag<E>
 
     for( int i = 0; i < bag.size(); i++ )
     {
-      E e1 = bag.get( i );
-
+      final E e1 = bag.get( i );
       for( int j = 0; j < size; j++ )
       {
         E e2 = data[ j ];
@@ -119,7 +118,6 @@ public class Bag<E> implements ImmutableBag<E>
         if( e1 == e2 )
         {
           remove( j );
-          j--;
           modified = true;
           break;
         }

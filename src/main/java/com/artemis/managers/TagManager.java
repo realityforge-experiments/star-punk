@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class TagManager extends Manager
 {
-  private Map<String, Entity> entitiesByTag;
-  private Map<Entity, String> tagsByEntity;
+  private final Map<String, Entity> entitiesByTag;
+  private final Map<Entity, String> tagsByEntity;
 
   public TagManager()
   {

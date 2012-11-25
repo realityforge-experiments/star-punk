@@ -26,7 +26,7 @@ public final class SpriteRenderSystem
   @Mapper
   ComponentMapper<Sprite> _spriteMapper;
   private SpriteBatch _batch;
-  private OrthographicCamera _camera;
+  private final OrthographicCamera _camera;
   private Bag<AtlasRegion> _regionsByEntity;
   private List<Entity> _sortedEntities;
   private final StarPunkGame _game;

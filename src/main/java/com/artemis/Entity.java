@@ -14,13 +14,13 @@ public final class Entity
 {
   private UUID uuid;
 
-  private int id;
-  private BitSet componentBits;
-  private BitSet systemBits;
+  private final int id;
+  private final BitSet componentBits;
+  private final BitSet systemBits;
 
-  private World world;
-  private EntityManager entityManager;
-  private ComponentManager componentManager;
+  private final World world;
+  private final EntityManager entityManager;
+  private final ComponentManager componentManager;
 
   protected Entity( World world, int id )
   {

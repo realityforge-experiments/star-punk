@@ -17,9 +17,9 @@ import starpunk.logic.systems.SpriteRenderSystem;
 public final class GameLoopScreen
   extends BaseScreen
 {
-  private World _world;
-  private OrthographicCamera _camera;
-  private SpriteRenderSystem _renderSystem;
+  private final World _world;
+  private final OrthographicCamera _camera;
+  private final SpriteRenderSystem _renderSystem;
 
   public GameLoopScreen( final StarPunkGame game )
   {
