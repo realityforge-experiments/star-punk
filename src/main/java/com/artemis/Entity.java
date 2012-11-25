@@ -130,7 +130,7 @@ public final class Entity
    *
    * @return this entity for chaining.
    */
-  public Entity removeComponent( final Class<? extends Object> type )
+  public Entity removeComponent( final Class<?> type )
   {
     removeComponent( ComponentType.getTypeFor( type ) );
     return this;
@@ -182,7 +182,7 @@ public final class Entity
    * @param type the expected return component type.
    * @return component that matches, or null if none is found.
    */
-  public <T extends Object> T getComponent( final Class<T> type )
+  public <T> T getComponent( final Class<T> type )
   {
     return type.cast( getComponent( ComponentType.getTypeFor( type ) ) );
   }
