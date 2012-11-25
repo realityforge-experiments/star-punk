@@ -1,17 +1,15 @@
 package starpunk.logic.systems;
 
-import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.Entity;
-import com.artemis.EntitySystem;
 import com.artemis.annotations.Mapper;
 import com.artemis.managers.TagManager;
-import com.artemis.utils.ImmutableBag;
+import com.artemis.systems.VoidEntitySystem;
 import starpunk.logic.PlayerInput;
 import starpunk.logic.components.Acceleration;
 
 public final class PlayerMovementSystem
-  extends EntitySystem
+  extends VoidEntitySystem
 {
   private static final float MAX_ACCELERATION = 10;
 
@@ -19,19 +17,8 @@ public final class PlayerMovementSystem
   ComponentMapper<Acceleration> _accelerationMapper;
   private Entity _player;
 
-  public PlayerMovementSystem()
-  {
-    super( Aspect.getAspectForAll() );
-  }
-
   @Override
-  public void initialize()
-  {
-    ensurePlayerEntity();
-  }
-
-  @Override
-  protected void processEntities( final ImmutableBag<Entity> entities )
+  protected void processSystem()
   {
     ensurePlayerEntity();
 
@@ -39,12 +26,6 @@ public final class PlayerMovementSystem
     {
       updatePlayer( _player );
     }
-  }
-
-  @Override
-  protected boolean checkProcessing()
-  {
-    return true;
   }
 
   private void ensurePlayerEntity()
