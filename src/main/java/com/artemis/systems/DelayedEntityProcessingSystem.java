@@ -29,13 +29,14 @@ import com.artemis.utils.ImmutableBag;
  *
  * @author Arni Arent
  */
-public abstract class DelayedEntityProcessingSystem extends EntitySystem
+public abstract class DelayedEntityProcessingSystem
+  extends EntitySystem
 {
   private float delay;
   private boolean running;
   private float acc;
 
-  public DelayedEntityProcessingSystem( final Aspect aspect )
+  protected DelayedEntityProcessingSystem( final Aspect aspect )
   {
     super( aspect );
   }

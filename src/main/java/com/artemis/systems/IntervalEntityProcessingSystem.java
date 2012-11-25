@@ -11,10 +11,10 @@ import com.artemis.utils.ImmutableBag;
  *
  * @author Arni Arent
  */
-public abstract class IntervalEntityProcessingSystem extends IntervalEntitySystem
+public abstract class IntervalEntityProcessingSystem
+  extends IntervalEntitySystem
 {
-
-  public IntervalEntityProcessingSystem( final Aspect aspect, final float interval )
+  protected IntervalEntityProcessingSystem( final Aspect aspect, final float interval )
   {
     super( aspect, interval );
   }

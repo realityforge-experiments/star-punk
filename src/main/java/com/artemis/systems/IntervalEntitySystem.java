@@ -14,7 +14,7 @@ public abstract class IntervalEntitySystem extends EntitySystem
   private float acc;
   private final float interval;
 
-  public IntervalEntitySystem( final Aspect aspect, final float interval )
+  protected IntervalEntitySystem( final Aspect aspect, final float interval )
   {
     super( aspect );
     this.interval = interval;

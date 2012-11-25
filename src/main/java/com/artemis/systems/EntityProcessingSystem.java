@@ -11,10 +11,10 @@ import com.artemis.utils.ImmutableBag;
  *
  * @author Arni Arent
  */
-public abstract class EntityProcessingSystem extends EntitySystem
+public abstract class EntityProcessingSystem
+  extends EntitySystem
 {
-
-  public EntityProcessingSystem( final Aspect aspect )
+  protected EntityProcessingSystem( final Aspect aspect )
   {
     super( aspect );
   }

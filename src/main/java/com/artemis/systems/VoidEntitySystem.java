@@ -15,7 +15,7 @@ import com.artemis.utils.ImmutableBag;
 public abstract class VoidEntitySystem extends EntitySystem
 {
 
-  public VoidEntitySystem()
+  protected VoidEntitySystem()
   {
     super( Aspect.getEmpty() );
   }
