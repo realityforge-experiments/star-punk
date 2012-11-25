@@ -141,7 +141,7 @@ public class GroupManager extends Manager
       for( int i = 0; groups.size() > i; i++ )
       {
         final String g = groups.get( i );
-        if( group == g || group.equals( g ) )
+        if( group.equals( g ) )
         {
           return true;
         }
