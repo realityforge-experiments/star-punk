@@ -94,7 +94,7 @@ public abstract class EntitySystem
    *
    * @param e the entity that was removed from this system.
    */
-  protected void removed( Entity e )
+  protected void removed( final Entity e )
   {
   }
 
