@@ -11,6 +11,7 @@ import starpunk.StarPunkGame;
 import starpunk.logic.EntityFactory;
 import starpunk.logic.PlayerInput;
 import starpunk.logic.systems.MovementSystem;
+import starpunk.logic.systems.PhysicsSystem;
 import starpunk.logic.systems.PlayerMovementSystem;
 import starpunk.logic.systems.SpriteRenderSystem;
 
@@ -30,6 +31,7 @@ public final class GameLoopScreen
     _renderSystem = _world.setSystem( new SpriteRenderSystem( game, _camera ), true );
     _world.setManager( new TagManager() );
     _world.setSystem( new MovementSystem() );
+    _world.setSystem( new PhysicsSystem() );
     _world.setSystem( new PlayerMovementSystem() );
     _world.initialize();
 
