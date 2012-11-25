@@ -78,6 +78,38 @@ public final class Aspect
   }
 
   /**
+   * Returns an aspect where an entity must possess all of the specified component types.
+   *
+   * @param types a required component type
+   * @return an aspect that can be matched against entities
+   */
+  public final Aspect all( final ComponentType... types )
+  {
+    for( final ComponentType t : types )
+    {
+      _allSet.set( t.getIndex() );
+    }
+
+    return this;
+  }
+
+  /**
+   * Excludes all of the specified component types from the aspect. A system will not be
+   * interested in an entity that possesses one of the specified exclusion component types.
+   *
+   * @param types component type to exclude
+   * @return an aspect that can be matched against entities
+   */
+  public final Aspect exclude( final ComponentType... types )
+  {
+    for( final ComponentType t : types )
+    {
+      _exclusionSet.set( t.getIndex() );
+    }
+    return this;
+  }
+
+  /**
    * Excludes all of the specified component types from the aspect. A system will not be
    * interested in an entity that possesses one of the specified exclusion component types.
    *
@@ -104,6 +136,21 @@ public final class Aspect
     for( final Class t : types )
     {
       _oneSet.set( ComponentType.getIndexFor( t ) );
+    }
+    return this;
+  }
+
+  /**
+   * Returns an aspect where an entity must possess one of the specified component types.
+   *
+   * @param types one of the types the entity must possess
+   * @return an aspect that can be matched against entities
+   */
+  public final Aspect one( final ComponentType... types )
+  {
+    for( final ComponentType t : types )
+    {
+      _oneSet.set( t.getIndex() );
     }
     return this;
   }
