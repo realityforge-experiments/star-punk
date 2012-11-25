@@ -36,7 +36,7 @@ public final class PlayerMovementSystem
     }
   }
 
-  protected void updatePlayer( final Entity e )
+  private void updatePlayer( final Entity e )
   {
     final Acceleration acceleration = _accelerationMapper.get( e );
 
