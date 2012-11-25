@@ -94,7 +94,7 @@ public abstract class DelayedEntityProcessingSystem extends EntitySystem
   }
 
   /**
-   * Process a entity this system is interested in. Substract the accumulatedDelta
+   * Process a entity this system is interested in. Subtract the accumulatedDelta
    * from the entities defined delay.
    *
    * @param e the entity to process.
@@ -109,7 +109,7 @@ public abstract class DelayedEntityProcessingSystem extends EntitySystem
    * <p/>
    * Cancels current delayed run and starts a new one.
    *
-   * @param delta time delay until processing starts.
+   * @param delay time delay until processing starts.
    */
   public void restart( float delay )
   {
