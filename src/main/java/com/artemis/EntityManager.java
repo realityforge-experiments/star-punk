@@ -23,11 +23,6 @@ public class EntityManager
     identifierPool = new IdentifierPool();
   }
 
-  @Override
-  protected void initialize()
-  {
-  }
-
   protected Entity createEntityInstance()
   {
     final Entity e = new Entity( world, identifierPool.checkOut() );

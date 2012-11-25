@@ -66,11 +66,6 @@ public class PlayerManager extends Manager
   }
 
   @Override
-  protected void initialize()
-  {
-  }
-
-  @Override
   public void deleted( final Entity e )
   {
     removeFromPlayer( e );

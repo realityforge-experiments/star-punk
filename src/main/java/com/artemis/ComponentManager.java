@@ -14,11 +14,6 @@ public class ComponentManager extends Manager
     deleted = new Bag<Entity>();
   }
 
-  @Override
-  protected void initialize()
-  {
-  }
-
   private void removeComponentsOfEntity( final Entity e )
   {
     final BitSet componentBits = e.getComponentBits();

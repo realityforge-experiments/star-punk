@@ -58,9 +58,4 @@ public class TagManager extends Manager
       entitiesByTag.remove( removedTag );
     }
   }
-
-  @Override
-  protected void initialize()
-  {
-  }
 }
