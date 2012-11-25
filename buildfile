@@ -8,7 +8,6 @@ define('star-punk') do
   compile.options.lint = 'all'
 
   compile.with :javax_annotation,
-               :jbox2d,
                GDX.core,
                GDX.core_natives,
                GDX.backend_lwjgl,
