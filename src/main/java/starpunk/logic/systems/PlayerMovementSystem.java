@@ -5,16 +5,18 @@ import com.artemis.Entity;
 import com.artemis.annotations.Mapper;
 import com.artemis.managers.TagManager;
 import com.artemis.systems.VoidEntitySystem;
+import com.badlogic.gdx.math.Vector2;
+import starpunk.Constants;
 import starpunk.logic.PlayerInput;
-import starpunk.logic.components.Acceleration;
 
 public final class PlayerMovementSystem
   extends VoidEntitySystem
 {
   private static final float MAX_ACCELERATION = 10;
 
-  @Mapper
-  private ComponentMapper<Acceleration> _accelerationMapper;
+  @Mapper( classifier = Constants.ACCELERATION_CLASSIFIER )
+  private ComponentMapper<Vector2> _accelerationMapper;
+
   private Entity _player;
 
   @Override
@@ -38,10 +40,10 @@ public final class PlayerMovementSystem
 
   private void updatePlayer( final Entity e )
   {
-    final Acceleration acceleration = _accelerationMapper.get( e );
+    final Vector2 acceleration = _accelerationMapper.get( e );
 
     final PlayerInput input = PlayerInput.getPlayerInput();
-    acceleration.setVectorX( input.isLeft() ? -MAX_ACCELERATION : input.isRight() ? MAX_ACCELERATION : 0 );
-    acceleration.setVectorY( input.isUp() ? MAX_ACCELERATION : input.isDown() ? -MAX_ACCELERATION : 0 );
+    acceleration.x = input.isLeft() ? -MAX_ACCELERATION : input.isRight() ? MAX_ACCELERATION : 0;
+    acceleration.y = input.isUp() ? MAX_ACCELERATION : input.isDown() ? -MAX_ACCELERATION : 0;
   }
 }

@@ -5,9 +5,7 @@ import com.artemis.World;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import starpunk.Constants;
-import starpunk.logic.components.Acceleration;
 import starpunk.logic.components.Sprite;
-import starpunk.logic.components.Velocity;
 
 public final class EntityFactory
 {
@@ -25,11 +23,11 @@ public final class EntityFactory
                   MathUtils.random( -height / 2, height / 2 ) );
     e.addComponent( Constants.POSITION, position );
 
-    final Velocity velocity = new Velocity();
-    velocity.setVectorX( 0.05f * MathUtils.random( -width / 2, width / 2 ) );
-    velocity.setVectorY( 0.05f * MathUtils.random( -height / 2, height / 2 ) );
-    e.addComponent( velocity );
-    e.addComponent( new Acceleration() );
+    final Vector2 velocity = new Vector2();
+    velocity.x = 0.05f * MathUtils.random( -width / 2, width / 2 );
+    velocity.y = 0.05f * MathUtils.random( -height / 2, height / 2 );
+    e.addComponent( Constants.VELOCITY, new Vector2() );
+    e.addComponent( Constants.ACCELERATION, new Vector2() );
 
     final Sprite sprite = new Sprite();
     sprite.setName( "star" );
@@ -52,12 +50,9 @@ public final class EntityFactory
   {
     final Entity e = world.createEntity();
 
-    final Vector2 position = new Vector2();
-    position.set( x, y );
-    e.addComponent( Constants.POSITION, position );
-
-    e.addComponent( new Velocity() );
-    e.addComponent( new Acceleration() );
+    e.addComponent( Constants.POSITION, new Vector2( x, y ) );
+    e.addComponent( Constants.VELOCITY, new Vector2() );
+    e.addComponent( Constants.ACCELERATION, new Vector2() );
 
     final Sprite sprite = new Sprite();
     sprite.setName( "images/u_fighter" );

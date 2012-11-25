@@ -167,12 +167,34 @@ public final class Aspect
   }
 
   /**
+   * Creates an aspect where an entity must possess all of the specified component types.
+   *
+   * @param types the required component types.
+   * @return an aspect that can be matched against entities
+   */
+  public static Aspect getAspectForAll( final ComponentType... types )
+  {
+    return new Aspect().all( types );
+  }
+
+  /**
    * Creates an aspect where an entity must possess one of the specified component types.
    *
    * @param types one of the types the entity must possess
    * @return an aspect that can be matched against entities
    */
   public static Aspect getAspectForOne( final Class... types )
+  {
+    return new Aspect().one( types );
+  }
+
+  /**
+   * Creates an aspect where an entity must possess one of the specified component types.
+   *
+   * @param types one of the types the entity must possess
+   * @return an aspect that can be matched against entities
+   */
+  public static Aspect getAspectForOne( final ComponentType... types )
   {
     return new Aspect().one( types );
   }

@@ -80,7 +80,7 @@ public final class SpriteRenderSystem
   {
     if( _positionMapper.has( e ) )
     {
-      final Vector2 position = _positionMapper.getSafe( e );
+      final Vector2 position = _positionMapper.get( e );
       final Sprite sprite = _spriteMapper.get( e );
 
       final AtlasRegion spriteRegion = _regionsByEntity.get( e.getId() );
