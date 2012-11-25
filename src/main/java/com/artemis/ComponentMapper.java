@@ -11,12 +11,12 @@ import com.artemis.utils.Bag;
  */
 public class ComponentMapper<T>
 {
-  private final Class<T> _type;
+  private final ComponentType<T> _type;
   private final Bag<T> _components;
 
-  private ComponentMapper( final Class<T> type, final World world )
+  private ComponentMapper( final ComponentType<T> type, final World world )
   {
-    _components = world.getComponentManager().getComponentsByType( ComponentType.getTypeFor( type ) );
+    _components = world.getComponentManager().getComponentsByType( type );
     _type = type;
   }
 
@@ -30,7 +30,7 @@ public class ComponentMapper<T>
    */
   public T get( final Entity e )
   {
-    return _type.cast( _components.get( e.getId() ) );
+    return _type.getType().cast( _components.get( e.getId() ) );
   }
 
   /**
@@ -44,7 +44,7 @@ public class ComponentMapper<T>
   {
     if( _components.isIndexWithinBounds( e.getId() ) )
     {
-      return _type.cast( _components.get( e.getId() ) );
+      return _type.getType().cast( _components.get( e.getId() ) );
     }
     return null;
   }
@@ -67,7 +67,7 @@ public class ComponentMapper<T>
    * @param world the world that this component mapper should use.
    * @return a new mapper.
    */
-  public static <T> ComponentMapper<T> getFor( final Class<T> type, final World world )
+  public static <T> ComponentMapper<T> getFor( final ComponentType<T> type, final World world )
   {
     return new ComponentMapper<T>( type, world );
   }
