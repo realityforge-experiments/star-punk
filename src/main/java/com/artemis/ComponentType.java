@@ -41,7 +41,7 @@ public final class ComponentType<T>
   @Override
   public String toString()
   {
-    return "ComponentType[" + _type.getSimpleName() + "/" + _classifier + "] (" + _index + ")";
+    return "ComponentType[" + getType().getSimpleName() + "/" + getClassifier() + "] (" + getIndex() + ")";
   }
 
   public static <T> ComponentType<T> getTypeFor( final Class<T> type )
